@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bomman Construtora — Construções e Reformas com Padrão</title>
+<meta name="description" content="Bomman Construtora: obras residenciais e comerciais, reformas e construções com rapidez, segurança e o Padrão Bomman.">
+<meta name="theme-color" content="#0b1e39">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+:root{
+  --brand:#0b1e39; --brand-2:#0a1a31; --brand-3:#112845;
+  --white:#ffffff; --muted:#cfe0ff; --accent:#2dd4bf; --accent-2:#8be9dd;
+  --shadow: 0 10px 30px rgba(0,0,0,.35); --radius:16px; --radius-sm:12px;
+  --container:1200px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto;
+  background:var(--brand);color:var(--white);line-height:1.65;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:var(--container);margin-inline:auto;padding:0 24px}
+.section{padding:84px 0}
+h1,h2,h3{margin:0 0 10px}
+.badge{display:inline-block;padding:8px 12px;border-radius:999px;
+  border:1px solid #ffffff22;background:#ffffff0d;color:#e9f2ff;font-size:.88rem}
+
+/* Header */
+.header{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(180%) blur(6px);
+  background:rgba(11,30,57,.9);border-bottom:1px solid #ffffff1a}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:40px;height:40px;border-radius:10px;background:#fff;display:grid;place-items:center;overflow:hidden}
+.brand b{letter-spacing:.3px}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{opacity:.9}
+.nav-links a.active,.nav-links a:hover{opacity:1}
+.hamburger{display:none;font-size:24px;cursor:pointer}
+@media (max-width:900px){
+  .hamburger{display:block}
+  .nav-links{position:fixed;left:0;right:0;top:60px;background:var(--brand-2);
+    padding:22px;border-top:1px solid #ffffff1a;display:grid;gap:16px;
+    transform:translateY(-120%);transition:.35s}
+  .nav-links.open{transform:translateY(0)}
+}
+
+/* Barra progresso */
+.progress{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--accent),#61ffe9);
+  width:0;z-index:1100}
+
+/* Hero */
+.hero{position:relative;min-height:78vh;display:grid;place-items:center;overflow:hidden;
+  background:radial-gradient(1200px 500px at 85% -20%,rgba(45,212,191,.15),transparent),
+             linear-gradient(180deg,rgba(255,255,255,.05),transparent 40%),var(--brand)}
+.hero:after{content:"";position:absolute;inset:0;
+  background:url('PHOTO-2025-03-01-09-46-05 20.jpg') center/cover no-repeat;opacity:.25}
+.hero .inner{position:relative;z-index:2;text-align:center;padding:60px 0}
+.hero h1{font-size:clamp(2rem,4.2vw,3.2rem);line-height:1.12;margin-bottom:12px}
+.hero p{max-width:780px;margin:0 auto 26px;color:#e3eeff}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border:0;border-radius:12px;cursor:pointer;
+  background:var(--accent);color:#0b1e39;font-weight:800;box-shadow:var(--shadow);transition:.25s transform}
+.btn:hover{transform:translateY(-2px)}
+.btn-outline{background:#fff;color:#0b1e39}
+
+/* Section headers */
+.header-row{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:28px}
+.section h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+.sub{color:#cfe0ff;opacity:.9}
+
+/* Grid base */
+.grid{display:grid;gap:24px}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:1024px){.grid-3{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:720px){.grid-3,.grid-2{grid-template-columns:1fr}}
+
+/* Cards */
+.card{background:#fff;color:#0b1e39;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transform:translateZ(0)}
+.card-body{padding:20px}
+.card h3{margin:0 0 6px}
+.card p{margin:0}
+.media{aspect-ratio:16/10;overflow:hidden;background:#dbe8ff}
+.media img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
+.card:hover .media img{transform:scale(1.06)}
+.iconwrap{width:64px;height:64px;border-radius:16px;display:grid;place-items:center;margin-bottom:10px;
+  background:linear-gradient(135deg,#eaf5ff,#fff);border:1px solid #e6eef9;color:#0b1e39;font-size:26px}
+
+/* Serviços com efeito */
+.service{position:relative}
+.service .card-body{position:relative}
+.service .tag{position:absolute;top:12px;right:12px;background:#0b1e39;color:#fff;padding:6px 10px;border-radius:999px;font-size:.8rem}
+
+/* Por que a Bomman (feature cards) */
+.features{display:grid;gap:20px;grid-template-columns:repeat(4,1fr)}
+@media (max-width:1024px){.features{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:680px){.features{grid-template-columns:1fr}}
+.feature{background:linear-gradient(135deg,#ffffff10,#ffffff05);border:1px solid #ffffff22;border-radius:16px;padding:20px;position:relative;overflow:hidden}
+.feature:before{content:"";position:absolute;inset:auto -20px -20px auto;width:120px;height:120px;border-radius:50%;
+  background:radial-gradient(closest-side, #ffffff22, transparent);filter:blur(2px)}
+.feature .fi{font-size:28px;margin-bottom:8px;color:var(--accent-2)}
+.feature h3{margin:0 0 6px}
+.feature p{margin:0;color:#d6e6ff}
+
+/* Processo timeline */
+.timeline{display:grid;gap:16px}
+.step{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.dot{width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px #2dd4bf33}
+.step b{display:block}
+
+/* Portfolio carousel */
+.carousel{position:relative;border-radius:16px;border:1px solid #ffffff22;overflow:hidden}
+.track{display:flex;transition:transform .6s ease}
+.slide{flex:0 0 100%}
+.slide img{width:100%;height:420px;object-fit:cover}
+.cnav{position:absolute;right:10px;bottom:10px;display:flex;gap:8px}
+.cnav button{width:10px;height:10px;border-radius:999px;border:0;background:#ffffff66;cursor:pointer}
+.cnav button.active{background:#fff}
+.prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:#ffffffcc;color:#0b1e39;border:0;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer}
+.prev{left:10px}.next{right:10px}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;place-items:center;z-index:1200}
+.lightbox.open{display:grid}
+.lightbox img{max-width:min(92vw,1200px);max-height:82vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb-close{position:absolute;top:16px;right:16px;background:#fff;color:#0b1e39;border:0;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;cursor:pointer}
+
+/* Depoimentos */
+.testi{position:relative;border:1px solid #ffffff22;border-radius:16px;overflow:hidden}
+.ttrack{display:flex;transition:transform .6s ease}
+.titem{flex:0 0 100%;padding:30px;background:#ffffff0f}
+.titem p{color:#e3eeff}
+.tnav{position:absolute;inset:auto 12px 12px auto;display:flex;gap:8px}
+.dot{width:10px;height:10px;border-radius:999px;background:#fff3;cursor:pointer;border:1px solid #fff6}
+.dot.active{background:#fff}
+
+/* Leader */
+.leader{display:grid;grid-template-columns: 360px 1fr;gap:24px;align-items:center;background:linear-gradient(135deg,#ffffff14,#ffffff08);border:1px solid #ffffff22;border-radius:16px;padding:20px}
+.leader img{width:100%;border-radius:16px;box-shadow:var(--shadow)}
+@media (max-width:900px){.leader{grid-template-columns:1fr}}
+.role{opacity:.9}
+
+/* Metrics counters */
+.metrics{display:grid;gap:18px;grid-template-columns:repeat(4,1fr)}
+@media (max-width:1024px){.metrics{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.metrics{grid-template-columns:1fr}}
+.metric{background:#ffffff0f;border:1px solid #ffffff22;border-radius:16px;padding:20px;text-align:center}
+.metric b{display:block;font-size:2rem}
+
+/* Contato */
+.contact{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+.form{background:#ffffff0f;border:1px solid #ffffff22;border-radius:16px;padding:20px}
+.field{display:grid;gap:8px;margin-bottom:12px}
+.field input,.field textarea{background:#fff;color:#0b1e39;border:1px solid #e6eef9;border-radius:10px;padding:12px 14px;font-size:1rem}
+.field input:focus,.field textarea:focus{outline:none;box-shadow:0 0 0 3px #2dd4bf40;border-color:#b6e6df}
+.btn-send{background:var(--accent);color:#0b1e39;border:0;padding:12px 16px;border-radius:12px;font-weight:800;cursor:pointer}
+.aside{display:grid;gap:14px}
+.aside .tile{background:#09182c;border:1px solid #ffffff14;padding:18px;border-radius:12px}
+.social{display:flex;gap:12px;align-items:center}
+.social a{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:#0a1a31;border:1px solid #ffffff1a}
+.social a:hover{background:#0d2343}
+
+/* Footer */
+.footer{background:#081524;border-top:1px solid #ffffff14;padding:26px 0;color:#cfe0f4}
+.footer-cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:18px}
+@media (max-width:900px){.footer-cols{grid-template-columns:1fr}}
+.credits{display:flex;gap:8px;align-items:center}
+
+/* Floating */
+.whats{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:999px;background:#25d366;color:#fff;display:grid;place-items:center;z-index:1050;box-shadow:var(--shadow)}
+.top{position:fixed;right:18px;bottom:86px;width:44px;height:44px;border-radius:999px;background:#0a1a31;color:#fff;border:1px solid #ffffff1a;display:grid;place-items:center;opacity:0;pointer-events:none;transition:.25s;z-index:1050}
+.top.show{opacity:1;pointer-events:auto}
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(18px);transition:.6s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* Helper */
+.center{text-align:center}
+.mt-6{margin-top:24px}
+  .logo img{width:26px;height:auto;display:block}
+
+@media (max-width: 768px) {
+  body { font-size: 15px; line-height: 1.6; }
+  h1, h2, h3 { font-size: 1.4rem; }
+  .container { padding: 0 16px; }
+  .nav-links { display: none; flex-direction: column; background: #0a1a31; position: absolute; top:60px; right:0; width:200px; padding:10px; border-radius:8px; }
+  .nav-links a { padding:8px 0; }
+  .hamburger { display: block; cursor: pointer; font-size: 24px; }
+  .btn { padding:16px 20px; font-size:1rem; }
+}
+@media (max-width: 480px) {
+  h1 { font-size: 1.2rem; }
+  .btn { width:100%; text-align:center; }
+}
+
+</style>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<style>
+.slick-carousel { margin-top: 40px; }
+.phone-item { padding: 10px; display: flex; justify-content: center; }
+.phone-item img { border: 12px solid #111; border-radius: 40px; width: 280px; height: 560px;
+  object-fit: cover; background: #000; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+@media (max-width: 700px) { .phone-item img { width: 240px; height: 480px; } }
+</style>
+
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<header class="header">
+  <div class="container nav">
+    <div class="brand">
+      <div class="logo" aria-label="Bomman"><img src="01-Símbolo-Blue.png" alt="Símbolo Bomman"></div>
+      <b>Bomman Construtora</b>
+    </div>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#portfolio">Projetos</a>
+      <a href="#porque">Por que a Bomman</a>
+      <a href="#lider">Líder</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="inner container reveal">
+    <span class="badge">Qualidade • Prazo • Transparência</span>
+    <h1>Construções e Reformas com rapidez, segurança e o <em>Padrão Bomman</em></h1>
+    <p>Obras residenciais e comerciais do planejamento à entrega, com gestão de prazos, custos e comunicação clara.</p>
+    <div class="ctas">
+      <a class="btn" href="#contato"><i class="fa-solid fa-paper-plane"></i> Solicitar orçamento</a>
+      <a class="btn btn-outline" href="#portfolio"><i class="fa-regular fa-folder-open"></i> Ver projetos</a>
+    </div>
+    <div class="metrics mt-6">
+      <div class="metric"><b class="count" data-target="30">0</b>Projetos entregues</div>
+      <div class="metric"><b class="count" data-target="18">0</b>Reformas concluídas</div>
+      <div class="metric"><b class="count" data-target="12">0</b>Obras em andamento</div>
+      <div class="metric"><b class="count" data-target="5">0</b>Anos de atuação</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="section" id="servicos">
+  <div class="container">
+    <div class="header-row">
+      <h2>Nossos Serviços</h2>
+      <p class="sub">Soluções completas para sua obra</p>
+    </div>
+
+    <div class="grid grid-2">
+      <!-- Construções -->
+      <article class="card service reveal">
+        <span class="tag">Construções</span>
+        <div class="media">
+          <img loading="lazy" src="construçoes.jpg" alt="Estrutura de construção moderna">
+        </div>
+        <div class="card-body">
+          <div class="iconwrap"><i class="fa-solid fa-building"></i></div>
+          <h3>Obras Residenciais e Comerciais</h3>
+          <p>Execução completa: fundação, estrutura, instalações e acabamento com gestão técnica rigorosa e segurança em primeiro lugar.</p>
+        </div>
+      </article>
+
+      <!-- Reformas -->
+      <article class="card service reveal">
+        <span class="tag">Reformas</span>
+        <div class="media">
+          <img loading="lazy" src="refroma.jpg" alt="Reforma de interiores sala contemporânea">
+        </div>
+        <div class="card-body">
+          <div class="iconwrap"><i class="fa-solid fa-paint-roller"></i></div>
+          <h3>Reformas & Retrofits</h3>
+          <p>Transformações de ambientes com mínima interrupção, readequação estrutural e foco em conforto, eficiência e valorização do imóvel.</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- POR QUE A BOMMAN -->
+<section class="section" id="porque">
+  <div class="container">
+    <div class="header-row">
+      <h2>Por que a Bomman?</h2>
+      <p class="sub">Diferenciais que viram recomendações</p>
+    </div>
+    <div class="center" style="margin:10px 0 16px"><img src="04-Logo-Horizontal-Light.png" alt="Bomman Construtora — logo horizontal" style="max-width:260px;width:60%;height:auto;opacity:.98"></div>
+    <div class="features">
+      <div class="feature reveal">
+        <i class="fi fa-solid fa-bolt"></i>
+        <h3>Rapidez</h3>
+        <p>Planejamento assertivo, suprimentos no tempo certo e equipes sincronizadas para entregar no prazo.</p>
+      </div>
+      <div class="feature reveal">
+        <i class="fi fa-solid fa-shield-halved"></i>
+        <h3>Segurança</h3>
+        <p>Conformidade técnica (ABNT/NRs), gestão de riscos e respeito total às normas de segurança.</p>
+      </div>
+      <div class="feature reveal">
+        <i class="fi fa-solid fa-handshake"></i>
+        <h3>Confiabilidade</h3>
+        <p>Transparência de custos e comunicação contínua. Você acompanha cada etapa da obra.</p>
+      </div>
+      <div class="feature reveal">
+        <i class="fi fa-solid fa-star"></i>
+        <h3>Padrão Bomman</h3>
+        <p>Acabamento impecável, seleção criteriosa de materiais e checklist de qualidade em 100% dos serviços.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFÓLIO -->
+<section class="section" id="portfolio" aria-label="Portfólio">
+  <div class="container">
+    <div class="header-row">
+      <h2>Projetos em destaque</h2>
+      <p class="sub">Clique para ampliar</p>
+    </div>
+    <div class="carousel reveal" id="car">
+      <button class="prev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="track" id="carTrack">
+        <div class="slide"><img class="lb" data-large="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2000&auto=format&fit=crop" src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1400&auto=format&fit=crop" alt="Fachada de vidro moderna"></div>
+        <div class="slide"><img class="lb" data-large="https://images.unsplash.com/photo-1550953800-6f22adf2f976?q=80&w=2000&auto=format&fit=crop" src="https://images.unsplash.com/photo-1550953800-6f22adf2f976?q=80&w=1400&auto=format&fit=crop" alt="Centro comercial linhas retas"></div>
+        <div class="slide"><img class="lb" data-large="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=2000&auto=format&fit=crop" src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1400&auto=format&fit=crop" alt="Apartamento reformado"></div>
+      </div>
+      <button class="next" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
+      <div class="cnav" id="carDots"></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- DEPOIMENTOS -->
+<section class="elementor-section">
+  <h2 class="elementor-heading-title">O que dizem nossos <b>clientes</b></h2>
+
+  <div class="ha-slick-carousel">
+    
+    <!-- Exemplo: basta duplicar este bloco <div class="phone-item"> para adicionar mais prints -->
+    <div class="phone-item">
+      <div class="phone-frame">
+        <img src="junior.jpg" alt="Depoimento Junior">
+      </div>
+    </div>
+
+    <div class="phone-item">
+      <div class="phone-frame">
+        <img src="amagay.jpg" alt="Depoimento Amagay">
+      </div>
+    </div>
+
+    <div class="phone-item">
+      <div class="phone-frame">
+        <img src="painho.jpg" alt="Depoimento Painho">
+      </div>
+    </div>
+
+    <!-- Prints genéricos para exemplo -->
+    <div class="phone-item">
+      <div class="phone-frame">
+        <img src="https://via.placeholder.com/280x550.png?text=Print+Genérico+1" alt="Print Genérico 1">
+      </div>
+    </div>
+
+    <div class="phone-item">
+      <div class="phone-frame">
+        <img src="https://via.placeholder.com/280x550.png?text=Print+Genérico+2" alt="Print Genérico 2">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.phone-item {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+.phone-mockup {
+  position: relative;
+  width: 280px;
+  height: 560px;
+  border-radius: 40px;
+  background: #111;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+  overflow: hidden;
+  border: 12px solid #000;
+}
+.phone-mockup:before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 8px;
+  border-radius: 4px;
+  background: #222;
+}
+.phone-mockup .screen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 28px;
+}
+@media (max-width: 768px) {
+  .phone-mockup {
+    width: 240px;
+    height: 480px;
+  }
+}
+</style>
+
+<script>
+$(document).ready(function(){
+  $('.slick-carousel').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3500,
+    arrows: true,
+    dots: true,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 768, settings: { slidesToShow: 1 } }
+    ]
+  });
+});
+</script>
+
+
+
+<!-- LÍDER -->
+<section class="section" id="lider" aria-label="Líder">
+  <div class="container">
+    <div class="header-row">
+      <h2>Líder</h2>
+      <p class="sub">Responsável técnico e visão de excelência</p>
+    </div>
+    <div class="leader reveal">
+      <img loading="lazy" src="amadeu.jpg" alt="Amadeu Bomman — Engenheiro Civil">
+      <div>
+        <h3>Amadeu Bomman</h3>
+        <div class="role">Engenheiro Civil</div>
+        <p class="mt-6">Conduz cada projeto com planejamento, segurança e transparência. Experiência em estruturas, gestão de obras e relacionamento com o cliente.</p>
+        <ul>
+          <li>CREA ativo • Atualização contínua</li>
+          <li>Gestão de cronograma e orçamento</li>
+          <li>Boas práticas de sustentabilidade</li>
+        </ul>
+        <div class="mt-6">
+          <a class="btn" href="#contato"><i class="fa-solid fa-calendar-check"></i> Agendar conversa</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="section" id="contato" aria-label="Contato">
+  <div class="container">
+    <div class="header-row">
+      <h2>Fale Conosco</h2>
+      <p class="sub">Responderemos o quanto antes</p>
+    </div>
+
+    <div class="contact">
+      <form id="form" class="form" novalidate>
+        <div class="field">
+          <label for="nome">Seu nome</label>
+          <input id="nome" required minlength="3" placeholder="Seu nome completo">
+        </div>
+        <div class="field">
+          <label for="email">Seu e-mail</label>
+          <input id="email" type="email" required placeholder="voce@email.com">
+        </div>
+        <div class="field">
+          <label for="msg">Mensagem</label>
+          <textarea id="msg" rows="5" required minlength="10" placeholder="Conte rapidamente o que precisa"></textarea>
+        </div>
+        <button class="btn-send" type="submit"><i class="fa-solid fa-envelope"></i> Enviar mensagem</button>
+        <p id="status" class="sub" aria-live="polite" style="margin-top:8px"></p>
+      </form>
+
+      <aside class="aside">
+        <div class="tile">
+          <h3>Atendimento</h3>
+          <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: <b>+55 81 9888-9698</b></p>
+          <p><i class="fa-solid fa-at"></i> E-mail: <b>contato@bomman.com.br</b></p>
+        </div>
+        <div class="tile">
+          <h3>Redes sociais</h3>
+          <div class="social">
+            <a href="https://wa.me/558198889698" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/bommanconstrutora/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/bomman-construtora/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:contato@bomman.com.br" aria-label="E-mail"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="tile">
+          <h3>Endereço</h3>
+          <p>Recife — PE • Atendemos região metropolitana</p>
+          <small>Seg–Sex • 08h–18h</small>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-cols">
+    <div>
+      <div class="credits"><div class="logo" aria-label="Bomman"><img src="01-Símbolo-Blue.png" alt="Símbolo Bomman"></div><b>Bomman Construtora</b></div>
+      <p>Construção, reformas e projetos com excelência. Transparência de ponta a ponta e compromisso com o resultado.</p>
+    </div>
+    <div>
+      <h4>Links</h4>
+      <ul style="list-style:none;padding:0;margin-top:8px;display:grid;gap:8px">
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#portfolio">Projetos</a></li>
+        <li><a href="#porque">Por que a Bomman</a></li>
+        <li><a href="#lider">Líder</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Social</h4>
+      <ul style="list-style:none;padding:0;margin-top:8px;display:grid;gap:8px">
+        <li><a href="https://www.instagram.com/bommanconstrutora/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/company/bomman-construtora/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://wa.me/558198889698" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="mailto:contato@bomman.com.br">E-mail</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container" style="margin-top:16px;border-top:1px solid #ffffff14;padding-top:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <small>&copy; 2025 Bomman Construtora. Todos os direitos reservados.</small>
+    <small>Política de Privacidade • Termos</small>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Visualização">
+  <button class="lb-close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+  <img src="" alt="">
+</div>
+
+<!-- Floating -->
+<a class="whats" href="https://wa.me/558198889698" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="top" id="topBtn" aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+// ======= Mobile nav =======
+const nav = document.querySelector('.nav-links');
+document.querySelector('.hamburger').addEventListener('click', ()=>{
+  nav.classList.toggle('open');
+});
+
+// ======= Scrollspy + progress bar =======
+const spyLinks = [...document.querySelectorAll('.nav-links a')];
+const secs = spyLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const progress = document.getElementById('progress');
+function onScroll(){
+  const y = window.scrollY + 120;
+  let cur=null; secs.forEach(s=>{ if(s.offsetTop<=y) cur = s.id; });
+  spyLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href').slice(1)===cur));
+  const h = document.body.scrollHeight - window.innerHeight;
+  progress.style.width = Math.min(100, (window.scrollY / h) * 100) + '%';
+}
+document.addEventListener('scroll', onScroll); onScroll();
+
+// ======= Reveal on scroll =======
+const io=new IntersectionObserver((entries)=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ======= Back to top =======
+const topBtn=document.getElementById('topBtn');
+const toggleTop=()=>{ if(window.scrollY>600) topBtn.classList.add('show'); else topBtn.classList.remove('show'); };
+document.addEventListener('scroll', toggleTop); toggleTop();
+topBtn.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// ======= Counters =======
+const counters=[...document.querySelectorAll('.count')];
+const ioc=new IntersectionObserver((es)=>es.forEach(e=>{
+  if(e.isIntersecting){
+    const el=e.target, target=+el.dataset.target; let cur=0;
+    const step=Math.max(1,Math.floor(target/80));
+    const t=setInterval(()=>{ cur+=step; if(cur>=target){cur=target; clearInterval(t);} el.textContent=cur; },20);
+    ioc.unobserve(el);
+  }
+}),{threshold:.6});
+counters.forEach(c=>ioc.observe(c));
+
+// ======= Portfolio carousel =======
+const track=document.getElementById('carTrack');
+const slides=[...track.children];
+let idx=0;
+const prev=document.querySelector('.prev'), next=document.querySelector('.next'), dotsWrap=document.getElementById('carDots');
+slides.forEach((_,i)=>{const b=document.createElement('button'); if(i===0)b.classList.add('active'); dotsWrap.appendChild(b);});
+const dots=[...dotsWrap.children];
+function goTo(i){ idx=(i+slides.length)%slides.length; track.style.transform=`translateX(-${idx*100}%)`; dots.forEach((d,di)=>d.classList.toggle('active',di===idx)); }
+prev.addEventListener('click',()=>goTo(idx-1));
+next.addEventListener('click',()=>goTo(idx+1));
+dots.forEach((d,i)=>d.addEventListener('click',()=>goTo(i)));
+setInterval(()=>goTo(idx+1),7000);
+
+// Lightbox
+const lb=document.getElementById('lightbox'), lbImg=lb.querySelector('img'), lbClose=lb.querySelector('.lb-close');
+document.querySelectorAll('.lb').forEach(img=>img.addEventListener('click',()=>{lbImg.src=img.dataset.large||img.src; lb.classList.add('open'); lb.setAttribute('aria-hidden','false');}));
+function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); lbImg.src=''; }
+lbClose.addEventListener('click',closeLb); lb.addEventListener('click',e=>{ if(e.target===lb) closeLb(); }); document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
+
+// ======= Testimonials carousel =======
+const tTrack=document.getElementById('tTrack'); const tDotsWrap=document.getElementById('tDots');
+const tItems=[...tTrack.children]; let ti=0;
+tItems.forEach((_,i)=>{const d=document.createElement('button');d.className='dot'+(i===0?' active':''); tDotsWrap.appendChild(d);});
+const tDots=[...tDotsWrap.children];
+function tGo(i){ ti=(i+tItems.length)%tItems.length; tTrack.style.transform=`translateX(-${ti*100}%)`; tDots.forEach((d,di)=>d.classList.toggle('active',di===ti)); }
+tDots.forEach((d,i)=>d.addEventListener('click',()=>tGo(i)));
+setInterval(()=>tGo(ti+1),7000);
+
+// ======= Form (validação + mailto) =======
+const form=document.getElementById('form'), status=document.getElementById('status');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const nome=document.getElementById('nome').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const msg=document.getElementById('msg').value.trim();
+  if(nome.length<3){status.textContent='Informe seu nome completo.';return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){status.textContent='Informe um e-mail válido.';return;}
+  if(msg.length<10){status.textContent='Conte melhor sua necessidade.';return;}
+  status.textContent='Abrindo seu cliente de e-mail...';
+  const subject=encodeURIComponent(`Contato do site - ${nome}`);
+  const body=encodeURIComponent(`Nome: ${nome}\nE-mail: ${email}\n\n${msg}`);
+  window.location.href=`mailto:contato@bomman.com.br?subject=${subject}&body=${body}`;
+  setTimeout(()=>status.textContent='',4000); form.reset();
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('.nav-links');
+  if(hamburger && nav){
+    hamburger.addEventListener('click', ()=>{
+      nav.style.display = (nav.style.display === 'flex') ? 'none' : 'flex';
+    });
+  }
+});
+</script>
+
+
+<script>
+$(document).ready(function(){
+  $('.slick-carousel').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    pauseOnFocus: true,
+    arrows: true,
+    dots: true,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 768, settings: { slidesToShow: 1 } }
+    ]
+  });
+});
+</script>
+
+
+<!-- ==================== O que dizem nossos clientes ==================== -->
+
+<!-- ==================== /O que dizem nossos clientes ==================== -->
+
+<!-- Slick Carousel -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<style>
+  .elementor-heading-title {
+    font-size: 32px;
+    text-align: center;
+    margin: 30px 0;
+    font-weight: bold;
+  }
+
+  .ha-slick-carousel {
+    width: 90%;
+    margin: auto;
+  }
+
+  .phone-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .phone-frame {
+    position: relative;
+    width: 280px;
+    height: 550px;
+    background: #000;
+    border-radius: 40px;
+    padding: 20px 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .phone-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+  }
+
+  /* Setas */
+  .slick-prev, .slick-next {
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  .slick-prev { left: -50px; }
+  .slick-next { right: -50px; }
+
+  /* Bolinhas */
+  .slick-dots li button:before {
+    font-size: 12px;
+    color: #000;
+  }
+  .slick-dots li.slick-active button:before {
+    color: #ff4444;
+  }
+
+  @media (max-width: 768px) {
+    .phone-frame {
+      width: 220px;
+      height: 450px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .phone-frame {
+      width: 180px;
+      height: 380px;
+    }
+  }
+</style>
+
+<script>
+  $(document).ready(function(){
+    $(".ha-slick-carousel").slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      pauseOnHover: true,
+      pauseOnFocus: true,
+      infinite: true,
+      arrows: true,
+      dots: true,
+      prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+      nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
+      responsive: [
+        { breakpoint: 1024, settings: { slidesToShow: 2 }},
+        { breakpoint: 600,  settings: { slidesToShow: 1 }}
+      ]
+    });
+  });
+</script>
+
+</body>
+</html>
