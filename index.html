@@ -253,6 +253,72 @@ h1,h2,h3{margin:0 0 10px}
   </div>
 </section>
 
+
+<!-- =================== QUEM SOMOS NÓS =================== -->
+<section class="quem-somos section" id="quem">
+  <div class="container quem-grid reveal">
+    <div class="quem-text">
+      <h2>Quem Somos Nós</h2>
+      <p>A Bomman Construtora nasceu com o propósito de elevar o padrão da construção civil em Pernambuco. Atuamos com foco em qualidade, eficiência e relacionamento transparente, entregando obras que refletem o compromisso com a excelência e o respeito aos nossos clientes.</p>
+
+      <div class="accordion">
+        <div class="acc-header">Diferencial na excelência <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="acc-content"><p>Trabalhamos com processos padronizados, controle de qualidade rigoroso e profissionais altamente capacitados em todas as etapas da obra.</p></div>
+      </div>
+      <div class="accordion">
+        <div class="acc-header">Rapidez e eficiência <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="acc-content"><p>Planejamento inteligente e logística de suprimentos integrada garantem cumprimento de prazos e execução sem desperdícios.</p></div>
+      </div>
+      <div class="accordion">
+        <div class="acc-header">Foco no cliente <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="acc-content"><p>Com comunicação constante e relatórios de progresso, o cliente participa de todas as decisões com total transparência.</p></div>
+      </div>
+      <div class="accordion">
+        <div class="acc-header">Padrão Bomman <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="acc-content"><p>O Padrão Bomman é a soma de técnica, estética e compromisso: o resultado são obras sólidas, bonitas e duradouras.</p></div>
+      </div>
+    </div>
+
+    <div class="quem-logo">
+      <img src="04-Logo-Horizontal-Light.png" alt="Logo Bomman Construtora">
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE A BOMMAN -->
+<section class="section" id="porque">
+  <div class="container">
+    <div class="header-row">
+      <h2>Por que a Bomman?</h2>
+      <p class="sub">Diferenciais que viram recomendações</p>
+    </div>
+    <div class="center" style="margin:10px 0 16px"><img src="04-Logo-Horizontal-Light.png" alt="Bomman Construtora — logo horizontal" style="max-width:260px;width:60%;height:auto;opacity:.98"></div>
+    <div class="features">
+      <div class="feature reveal">
+        <i class="fi fa-solid fa-bolt"></i>
+        <h3>Rapidez</h3>
+        <p>Planejamento assertivo, suprimentos no tempo certo e equipes sincronizadas para entregar no prazo.</p>
+      </div>
+      <div class="feature reveal">
+        <i class="fi fa-solid fa-shield-halved"></i>
+        <h3>Segurança</h3>
+        <p>Conformidade técnica (ABNT/NRs), gestão de riscos e respeito total às normas de segurança.</p>
+      </div>
+      <div class="feature reveal">
+        <i class="fi fa-solid fa-handshake"></i>
+        <h3>Confiabilidade</h3>
+        <p>Transparência de custos e comunicação contínua. Você acompanha cada etapa da obra.</p>
+      </div>
+      <div class="feature reveal">
+        <i class="fi fa-solid fa-star"></i>
+        <h3>Padrão Bomman</h3>
+        <p>Acabamento impecável, seleção criteriosa de materiais e checklist de qualidade em 100% dos serviços.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFÓLIO -->
 <!-- SERVIÇOS -->
 <section class="section" id="servicos">
   <div class="container">
@@ -289,40 +355,7 @@ h1,h2,h3{margin:0 0 10px}
       </article>
     </div>
 
-    <!-- POR QUE A BOMMAN -->
-<section class="section" id="porque">
-  <div class="container">
-    <div class="header-row">
-      <h2>Por que a Bomman?</h2>
-      <p class="sub">Diferenciais que viram recomendações</p>
-    </div>
-    <div class="center" style="margin:10px 0 16px"><img src="04-Logo-Horizontal-Light.png" alt="Bomman Construtora — logo horizontal" style="max-width:260px;width:60%;height:auto;opacity:.98"></div>
-    <div class="features">
-      <div class="feature reveal">
-        <i class="fi fa-solid fa-bolt"></i>
-        <h3>Rapidez</h3>
-        <p>Planejamento assertivo, suprimentos no tempo certo e equipes sincronizadas para entregar no prazo.</p>
-      </div>
-      <div class="feature reveal">
-        <i class="fi fa-solid fa-shield-halved"></i>
-        <h3>Segurança</h3>
-        <p>Conformidade técnica (ABNT/NRs), gestão de riscos e respeito total às normas de segurança.</p>
-      </div>
-      <div class="feature reveal">
-        <i class="fi fa-solid fa-handshake"></i>
-        <h3>Confiabilidade</h3>
-        <p>Transparência de custos e comunicação contínua. Você acompanha cada etapa da obra.</p>
-      </div>
-      <div class="feature reveal">
-        <i class="fi fa-solid fa-star"></i>
-        <h3>Padrão Bomman</h3>
-        <p>Acabamento impecável, seleção criteriosa de materiais e checklist de qualidade em 100% dos serviços.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PORTFÓLIO -->
+    
 <section class="section" id="portfolio" aria-label="Portfólio">
   <div class="container">
     <div class="header-row">
@@ -796,6 +829,35 @@ $(document).ready(function(){
       ]
     });
   });
+</script>
+
+
+<style>
+.quem-somos{background:#0a1a31;padding:100px 0}
+.quem-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px}
+.quem-text h2{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:16px}
+.quem-text p{color:#d8e6ff;margin-bottom:20px;max-width:600px}
+.accordion{border:1px solid #ffffff22;border-radius:12px;overflow:hidden;background:#ffffff05;margin-top:14px}
+.acc-header{padding:16px 20px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:#0d2343}
+.acc-header:hover{background:#102e57}
+.acc-content{max-height:0;overflow:hidden;transition:max-height .45s ease,padding .45s ease}
+.acc-content p{padding:0 20px 18px;color:#e0edff}
+.acc-header i{transition:transform .3s}
+.acc-header.active i{transform:rotate(180deg)}
+.quem-logo{text-align:center}
+.quem-logo img{max-width:340px;width:80%;height:auto;opacity:.95}
+@media(max-width:900px){.quem-grid{grid-template-columns:1fr;text-align:center}.quem-logo{order:-1}}
+</style>
+
+<script>
+document.querySelectorAll('.acc-header').forEach(head=>{
+  head.addEventListener('click',()=>{
+    const open = head.classList.toggle('active');
+    const content = head.nextElementSibling;
+    if(open){content.style.maxHeight = content.scrollHeight + 'px'; content.style.paddingTop='10px';}
+    else {content.style.maxHeight = null; content.style.paddingTop='0';}
+  });
+});
 </script>
 
 </body>
