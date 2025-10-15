@@ -237,6 +237,25 @@ h1,h2,h3{margin:0 0 10px}
 .quem-logo img{max-width:340px;width:80%;height:auto;opacity:.95}
 @media(max-width:900px){.quem-grid{grid-template-columns:1fr;text-align:center}.quem-logo{order:-1}}
 
+
+/* ===== Portfolio Slick (igual ao prints, porém landscape) ===== */
+.portfolio-slick{margin-top:10px;}
+.portfolio-item{padding:10px}
+.portfolio-item img{
+  width:100%; height:420px; object-fit:cover; border-radius:16px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.35); border:1px solid #ffffff22;
+}
+/* setas/dots iguais */
+.portfolio-slick .slick-prev, .portfolio-slick .slick-next{
+  background:#0a1a31; color:#fff; border:none; border-radius:50%; width:42px; height:42px;
+  display:flex!important; align-items:center; justify-content:center; z-index:5;
+}
+.portfolio-slick .slick-prev{ left:-50px } .portfolio-slick .slick-next{ right:-50px }
+.portfolio-slick .slick-dots li button:before{ color:#fff; opacity:.5 }
+.portfolio-slick .slick-dots li.slick-active button:before{ color:#fff; opacity:1 }
+@media (max-width:1024px){ .portfolio-item img{ height:360px } }
+@media (max-width:720px){ .portfolio-item img{ height:300px } .portfolio-slick .slick-prev{left:-30px} .portfolio-slick .slick-next{right:-30px} }
+
 </style>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -340,8 +359,6 @@ h1,h2,h3{margin:0 0 10px}
   </div>
 </section>
 
-<!-- PORTFÓLIO -->
-
 <!-- SERVIÇOS -->
 <section class="section" id="servicos">
   <div class="container">
@@ -398,22 +415,27 @@ h1,h2,h3{margin:0 0 10px}
   </div>
 </section>
 
-<!-- PORTFÓLIO -->
+
+<!-- PORTFÓLIO (Slick unificado) -->
 <section class="section" id="portfolio" aria-label="Portfólio">
   <div class="container">
     <div class="header-row">
       <h2>Projetos em destaque</h2>
       <p class="sub">Clique para ampliar</p>
     </div>
-    <div class="carousel reveal" id="car">
-      <button class="prev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
-      <div class="track" id="carTrack">
-        <div class="slide"><img class="lb" data-large="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2000&auto=format&fit=crop" src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1400&auto=format&fit=crop" alt="Fachada de vidro moderna"></div>
-        <div class="slide"><img class="lb" data-large="https://images.unsplash.com/photo-1550953800-6f22adf2f976?q=80&w=2000&auto=format&fit=crop" src="https://images.unsplash.com/photo-1550953800-6f22adf2f976?q=80&w=1400&auto=format&fit=crop" alt="Centro comercial linhas retas"></div>
-        <div class="slide"><img class="lb" data-large="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=2000&auto=format&fit=crop" src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1400&auto=format&fit=crop" alt="Apartamento reformado"></div>
-      </div>
-      <button class="next" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
-      <div class="cnav" id="carDots"></div>
+
+    <div class="portfolio-slick">
+      <!-- 10 imagens genéricas para trocar depois -->
+      <div class="portfolio-item"><img class="lb" src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1600&auto=format&fit=crop" alt="Projeto 01"></div>
+      <div class="portfolio-item"><img class="lb" src="https://images.unsplash.com/photo-1550953800-6f22adf2f976?q=80&w=1600&auto=format&fit=crop" alt="Projeto 02"></div>
+      <div class="portfolio-item"><img class="lb" src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1600&auto=format&fit=crop" alt="Projeto 03"></div>
+      <div class="portfolio-item"><img class="lb" src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1600&auto=format&fit=crop" alt="Projeto 04"></div>
+      <div class="portfolio-item"><img class="lb" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600&auto=format&fit=crop" alt="Projeto 05"></div>
+      <div class="portfolio-item"><img class="lb" src="https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?q=80&w=1600&auto=format&fit=crop" alt="Projeto 06"></div>
+      <div class="portfolio-item"><img class="lb" src="https://images.unsplash.com/photo-1494526585095-46c7f9d74d47?q=80&w=1600&auto=format&fit=crop" alt="Projeto 07"></div>
+      <div class="portfolio-item"><img class="lb" src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1600&auto=format&fit=crop" alt="Projeto 08"></div>
+      <div class="portfolio-item"><img class="lb" src="https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?q=80&w=1600&auto=format&fit=crop" alt="Projeto 09"></div>
+      <div class="portfolio-item"><img class="lb" src="https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1600&auto=format&fit=crop" alt="Projeto 10"></div>
     </div>
   </div>
 </section>
@@ -904,6 +926,82 @@ document.querySelectorAll('.acc-header').forEach(head=>{
     else {content.style.maxHeight = null; content.style.paddingTop='0';}
   });
 });
+</script>
+
+<script>
+
+$(document).ready(function(){
+  $('.portfolio-slick').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3500,
+    pauseOnHover: true,
+    pauseOnFocus: true,
+    infinite: true,
+    centerMode: true,
+    centerPadding: '40px',
+    arrows: true,
+    dots: true,
+    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
+    responsive: [
+      { breakpoint: 1200, settings: { slidesToShow: 2, centerPadding:'30px' } },
+      { breakpoint: 760,  settings: { slidesToShow: 1, centerPadding:'20px' } }
+    ]
+  });
+
+  // Lightbox para o portfólio (reutilizando o já existente)
+  $('.portfolio-slick img.lb').on('click', function(){
+    const src = $(this).attr('src');
+    const big = $(this).data('large') || src;
+    const lb = document.getElementById('lightbox');
+    lb.querySelector('img').src = big;
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+  });
+});
+
+</script>
+
+<script>
+// ===== Robust Lightbox Control (open/close) =====
+(function(){
+  const lb = document.getElementById('lightbox');
+  if(!lb) return;
+  const img = lb.querySelector('img');
+  function openLB(src){
+    if(!src) return;
+    img.src = src;
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLB(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+  // Close by clicking backdrop or any close-like element
+  lb.addEventListener('click', function(e){
+    const isBackdrop = e.target === lb;
+    const wantsClose = !!(e.target.closest('.close, .lb-close, [data-lb-close], [data-action="close"], [aria-label="Fechar"], [aria-label="Close"], .lightbox-close'));
+    if(isBackdrop || wantsClose){ closeLB(); }
+  });
+  // Close by ESC key
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeLB(); }
+  });
+  // Ensure all portfolio images open LB
+  const selectors = '.portfolio-slick img.lb, .slider img.lb, .sa-slider img.lb, .showcase img.lb';
+  document.querySelectorAll(selectors).forEach(function(el){
+    el.addEventListener('click', function(){
+      const big = el.getAttribute('data-large') || el.getAttribute('src');
+      openLB(big);
+    });
+  });
+})();
 </script>
 
 </body>
