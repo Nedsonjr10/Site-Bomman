@@ -198,6 +198,36 @@ h1,h2,h3{margin:0 0 10px}
   .btn { width:100%; text-align:center; }
 }
 
+
+/* ===== Animação dos 4 cards de serviços ===== */
+.card.service-card{
+  position: relative;
+  overflow: visible;
+  transition: transform .35s ease, box-shadow .35s ease;
+  will-change: transform;
+}
+.card.service-card .card-body{
+  background:#ffffff;
+  border-radius:16px;
+  transition: background .35s ease, box-shadow .35s ease;
+}
+.card.service-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 22px 60px rgba(11,30,57,.28);
+}
+.card.service-card::after{
+  content:"";
+  position:absolute;
+  left:20px; right:20px; bottom:-12px;
+  height:12px; border-radius:10px;
+  background:linear-gradient(90deg,#112845,#2b6fb0);
+  opacity:.7; transform:scaleX(.8);
+  transition: opacity .35s ease, transform .35s ease;
+}
+.card.service-card:hover::after{
+  opacity:1; transform:scaleX(1);
+}
+
 </style>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -319,6 +349,7 @@ h1,h2,h3{margin:0 0 10px}
 </section>
 
 <!-- PORTFÓLIO -->
+
 <!-- SERVIÇOS -->
 <section class="section" id="servicos">
   <div class="container">
@@ -328,34 +359,54 @@ h1,h2,h3{margin:0 0 10px}
     </div>
 
     <div class="grid grid-2">
-      <!-- Construções -->
-      <article class="card service reveal">
-        <span class="tag">Construções</span>
-        <div class="media">
-          <img loading="lazy" src="construçoes.jpg" alt="Estrutura de construção moderna">
-        </div>
-        <div class="card-body">
-          <div class="iconwrap"><i class="fa-solid fa-building"></i></div>
-          <h3>Obras Residenciais e Comerciais</h3>
-          <p>Execução completa: fundação, estrutura, instalações e acabamento com gestão técnica rigorosa e segurança em primeiro lugar.</p>
+      <!-- Card 1 -->
+      <article class="card service-card reveal">
+        <div class="card-body" style="padding:28px 28px 36px;">
+          <div class="iconwrap" style="width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,#112845,#2b6fb0);color:#fff;display:grid;place-items:center;font-size:22px;margin-bottom:18px;">
+            <i class="fa-solid fa-house-chimney"></i>
+          </div>
+          <h3 style="text-transform:uppercase;color:#112845;letter-spacing:.6px;">Construção de casas</h3>
+          <p style="margin-top:12px;color:#133055;opacity:.9">Projetos e execução completa para residências com gestão técnica e qualidade construtiva.</p>
         </div>
       </article>
 
-      <!-- Reformas -->
-      <article class="card service reveal">
-        <span class="tag">Reformas</span>
-        <div class="media">
-          <img loading="lazy" src="refroma.jpg" alt="Reforma de interiores sala contemporânea">
+      <!-- Card 2 -->
+      <article class="card service-card reveal">
+        <div class="card-body" style="padding:28px 28px 36px;">
+          <div class="iconwrap" style="width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,#112845,#2b6fb0);color:#fff;display:grid;place-items:center;font-size:22px;margin-bottom:18px;">
+            <i class="fa-solid fa-computer"></i>
+          </div>
+          <h3 style="text-transform:uppercase;color:#112845;letter-spacing:.6px;">Projetos de engenharia e arquitetura</h3>
+          <p style="margin-top:12px;color:#133055;opacity:.9">Elaboração de projetos técnicos, compatibilização e acompanhamento técnico.</p>
         </div>
-        <div class="card-body">
-          <div class="iconwrap"><i class="fa-solid fa-paint-roller"></i></div>
-          <h3>Reformas & Retrofits</h3>
-          <p>Transformações de ambientes com mínima interrupção, readequação estrutural e foco em conforto, eficiência e valorização do imóvel.</p>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card service-card reveal">
+        <div class="card-body" style="padding:28px 28px 36px;">
+          <div class="iconwrap" style="width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,#112845,#2b6fb0);color:#fff;display:grid;place-items:center;font-size:22px;margin-bottom:18px;">
+            <i class="fa-solid fa-trowel-bricks"></i>
+          </div>
+          <h3 style="text-transform:uppercase;color:#112845;letter-spacing:.6px;">Reformas, retrofits e ampliações de alto padrão</h3>
+          <p style="margin-top:12px;color:#133055;opacity:.9">Intervenções que valorizam e modernizam ambientes mantendo a excelência construtiva.</p>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card service-card reveal">
+        <div class="card-body" style="padding:28px 28px 36px;">
+          <div class="iconwrap" style="width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,#112845,#2b6fb0);color:#fff;display:grid;place-items:center;font-size:22px;margin-bottom:18px;">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <h3 style="text-transform:uppercase;color:#112845;letter-spacing:.6px;">Consultoria para financiamento e aprovação em prefeitura</h3>
+          <p style="margin-top:12px;color:#133055;opacity:.9">Suporte técnico e documental para aprovação de projetos e orientação sobre financiamentos.</p>
         </div>
       </article>
     </div>
+  </div>
+</section>
 
-    
+<!-- PORTFÓLIO -->
 <section class="section" id="portfolio" aria-label="Portfólio">
   <div class="container">
     <div class="header-row">
@@ -374,8 +425,6 @@ h1,h2,h3{margin:0 0 10px}
     </div>
   </div>
 </section>
-
-
 
 <!-- DEPOIMENTOS -->
 <section class="elementor-section">
