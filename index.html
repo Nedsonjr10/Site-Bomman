@@ -260,6 +260,33 @@ h1,h2,h3{margin:0 0 10px}
 /* === Métrica fixa "+20.000 m²" (Executados) no padrão Bomman === */
 .metrics .metric b.count-static{display:block;font-size:2rem;color:#fff;font-weight:800;line-height:1}
 
+
+/* === Bloco de Vídeo (estilo Souza Amorim) === */
+.video-block .header-row{margin-bottom:18px}
+.video-wrap{position:relative;border-radius:16px;overflow:hidden;border:1px solid #ffffff22;
+  box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.video-wrap video,
+.video-wrap .video-poster{display:block;width:100%;height:520px;object-fit:cover;background:#0a1a31}
+@media(max-width:1024px){ .video-wrap video,.video-wrap .video-poster{height:420px} }
+@media(max-width:720px){ .video-wrap video,.video-wrap .video-poster{height:320px} }
+.video-overlay{position:absolute;inset:0;display:grid;place-items:center;
+  background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.35));transition:.3s}
+.play-btn{width:86px;height:86px;border-radius:999px;border:0;
+  background:#ffffffcc;color:#0b1e39;display:grid;place-items:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);cursor:pointer;font-size:26px;transition:.2s transform}
+.play-btn:hover{transform:scale(1.05)}
+.video-label{position:absolute;left:14px;bottom:14px;background:#0b1e39bd;border:1px solid #ffffff2a;
+  padding:8px 12px;border-radius:10px;font-weight:700}
+
+/* Modal de vídeo */
+.videobox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;place-items:center;z-index:1400}
+.videobox.open{display:grid}
+.videobox-inner{position:relative;width:min(1100px,92vw);}
+.videobox video{width:100%;max-height:78vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6);background:#000}
+.vb-close{position:absolute;top:-50px;right:0;background:#fff;color:#0b1e39;border:0;width:44px;height:44px;border-radius:12px;
+  display:grid;place-items:center;cursor:pointer}
+@media (max-width:720px){.vb-close{top:-56px}}
+
 </style>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -281,10 +308,7 @@ h1,h2,h3{margin:0 0 10px}
 
 <header class="header">
   <div class="container nav">
-    <div class="brand">
-      <div class="logo" aria-label="Bomman"><img src="01-Símbolo-Blue.png" alt="Símbolo Bomman"></div>
-      <b>Bomman Construtora</b>
-    </div>
+    <div class="brand"><a href="#home" class="brand-logo" aria-label="Bomman Construtora"><img src="04-Logo-Horizontal-Light.png" alt="Bomman Construtora" height="78" style="width:auto;image-rendering:auto;display:block;"></a></div>
     <nav class="nav-links" aria-label="Principal">
       <a href="#servicos">Serviços</a>
       <a href="#portfolio">Projetos</a>
@@ -415,6 +439,28 @@ h1,h2,h3{margin:0 0 10px}
           <p style="margin-top:12px;color:#133055;opacity:.9">Suporte técnico e documental para aprovação de projetos e orientação sobre financiamentos.</p>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- VÍDEO INSTITUCIONAL -->
+<section class="section video-block" id="video">
+  <div class="container">
+    <div class="header-row">
+      <h2>Vídeo institucional</h2>
+      <p class="sub">Conheça nosso padrão de obra</p>
+    </div>
+
+    <div class="video-wrap reveal">
+      <img class="video-poster" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1600&auto=format&fit=crop" alt="Capa do vídeo">
+      <div class="video-overlay">
+        <button class="play-btn" id="openVideo" aria-label="Reproduzir vídeo">
+          <i class="fa-solid fa-play"></i>
+        </button>
+        <span class="video-label">Assista ao vídeo</span>
+      </div>
     </div>
   </div>
 </section>
@@ -662,6 +708,19 @@ $(document).ready(function(){
     <small>Política de Privacidade • Termos</small>
   </div>
 </footer>
+
+
+<!-- Modal de Vídeo -->
+<div class="videobox" id="videobox" aria-hidden="true" role="dialog" aria-label="Reprodução de vídeo">
+  <div class="videobox-inner">
+    <button class="vb-close" aria-label="Fechar vídeo"><i class="fa-solid fa-xmark"></i></button>
+    <video id="vbVideo" controls preload="metadata">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      Seu navegador não suporta vídeo HTML5.
+    </video>
+  </div>
+</div>
+
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Visualização">
@@ -1005,6 +1064,61 @@ $(document).ready(function(){
       openLB(big);
     });
   });
+})();
+</script>
+
+
+<!-- Video play/close behavior patch (injected) -->
+<script>
+(function(){
+  // Safety: only run when DOM is ready
+  function initVideoControls(){
+    const openBtn = document.getElementById('openVideo');
+    const videobox = document.getElementById('videobox');
+    const vbVideo = document.getElementById('vbVideo');
+    const vbClose = document.querySelector('.vb-close');
+
+    if(!openBtn || !videobox || !vbVideo) return;
+
+    function openVideo(){
+      // show modal and play
+      videobox.classList.add('open');
+      videobox.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      // try to play; some browsers require user gesture (we have one)
+      vbVideo.currentTime = 0;
+      const p = vbVideo.play();
+      if(p && typeof p.catch === 'function'){ p.catch(()=>{/* autoplay blocked? user already clicked, ignore */}); }
+      vbVideo.focus();
+    }
+
+    function closeVideo(){
+      videobox.classList.remove('open');
+      videobox.setAttribute('aria-hidden','true');
+      try{ vbVideo.pause(); vbVideo.currentTime = 0; }catch(e){/* ignore */}
+      document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      openVideo();
+    });
+
+    if(vbClose) vbClose.addEventListener('click', function(e){ e.preventDefault(); closeVideo(); });
+
+    // Close when clicking backdrop
+    videobox.addEventListener('click', function(e){
+      if(e.target === videobox) closeVideo();
+    });
+
+    // Close on ESC
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeVideo();
+    });
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initVideoControls);
+  else initVideoControls();
 })();
 </script>
 
