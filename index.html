@@ -302,6 +302,56 @@ h1,h2,h3{margin:0 0 10px}
 @media (max-width: 700px) { .phone-item img { width: 240px; height: 480px; } }
 </style>
 
+
+<style>
+
+/* === Nossos Diferenciais (accordion hero-like) === */
+.diff-wrap{
+  position: relative;
+  min-height: 100vh;
+  display:flex; align-items:center;
+  background:
+    linear-gradient(to right, rgba(10,28,51,.92) 0%, rgba(10,28,51,.86) 36%, rgba(10,28,51,.72) 60%, rgba(10,28,51,.55) 100%),
+    url('https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+}
+.diff-wrap .container{ width: min(1180px, 92%); margin: 64px auto; }
+.diff-eyebrow{
+  display:inline-block; padding:10px 16px; border-radius:999px;
+  background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.08);
+  color:#bcd0ef; letter-spacing:.12em; text-transform:uppercase;
+  font-size:13px; margin-bottom:14px;
+}
+.diff-title{ font-size: clamp(30px, 5vw, 46px); margin:0 0 10px 0; }
+.diff-sub{ color:#bcd0ef; margin: 0 0 26px 0; }
+
+.diff-accordion{ display:grid; gap:12px; }
+.diff-item{
+  background:rgba(16,37,68,.55); backdrop-filter: blur(8px);
+  border:1px solid rgba(255,255,255,.08); border-radius:14px;
+  overflow:hidden;
+}
+.diff-summary{
+  cursor:pointer; padding:18px 18px;
+  display:flex; align-items:center; gap:12px; user-select:none;
+}
+.diff-summary b{ font-size:18px; }
+.diff-summary .icon{ color:#14b8a6; }
+.diff-content{
+  display:grid; grid-template-columns: 1fr 1fr; gap:16px;
+  padding: 0 18px 18px 56px;
+}
+.diff-content img{
+  width:100%; height:220px; object-fit:cover;
+  border-radius:12px; box-shadow: 0 24px 60px rgba(0,0,0,.35);
+}
+details.diff-item:not([open]) .diff-content{ display:none; }
+
+@media (max-width: 880px){
+  .diff-content{ grid-template-columns:1fr; padding: 0 18px 18px 56px; }
+}
+
+</style>
+
 </head>
 <body>
 <div class="progress" id="progress"></div>
@@ -463,6 +513,55 @@ h1,h2,h3{margin:0 0 10px}
       </div>
     </div>
   </div>
+</section>
+
+
+<!-- =================== NOSSOS DIFERENCIAIS (abaixo do vídeo) =================== -->
+<section id="diferenciais">
+  <div class="diff-wrap">
+    <div class="container">
+      <span class="diff-eyebrow">Nossos diferenciais</span>
+      <h2 class="diff-title">Transparência, eficiência e presença em campo</h2>
+      <p class="diff-sub">Clique nos itens para ver evidências reais do nosso acompanhamento e gestão.</p>
+
+      <div class="diff-accordion">
+        <details class="diff-item" open>
+          <summary class="diff-summary"><span class="icon">📊</span> <b>Sistema de gestão completo</b></summary>
+          <div class="diff-content">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop" alt="Relatórios e dashboards">
+            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Planilhas e indicadores">
+          </div>
+        </details>
+
+        <details class="diff-item">
+          <summary class="diff-summary"><span class="icon">📷</span> <b>Diário de obras (fotos e relatórios)</b></summary>
+          <div class="diff-content">
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2b8f?q=80&w=1200&auto=format&fit=crop" alt="Registro fotográfico">
+            <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1200&auto=format&fit=crop" alt="Relato técnico">
+          </div>
+        </details>
+
+        <details class="diff-item">
+          <summary class="diff-summary"><span class="icon">👷</span> <b>Equipe presente em campo</b></summary>
+          <div class="diff-content">
+            <img src="https://images.unsplash.com/photo-1532635026-8b9fb99825c7?q=80&w=1200&auto=format&fit=crop" alt="Supervisão diária">
+            <img src="https://images.unsplash.com/photo-1444419988131-046ed4e5ffd6?q=80&w=1200&auto=format&fit=crop" alt="Execução com qualidade">
+          </div>
+        </details>
+
+        <details class="diff-item">
+          <summary class="diff-summary"><span class="icon">✅</span> <b>Qualidade e controle por etapa</b></summary>
+          <div class="diff-content">
+            <img src="https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1200&auto=format&fit=crop" alt="Checklist e inspeções">
+            <img src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1200&auto=format&fit=crop" alt="Padrão de acabamento">
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 </section>
 
 
