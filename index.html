@@ -352,6 +352,257 @@ details.diff-item:not([open]) .diff-content{ display:none; }
 
 </style>
 
+
+<style>
+/* === CTA scroll-in (hero) — minimal & scoped === */
+.hero .ctas { will-change: opacity, transform }
+.hero .ctas.cta-hide { opacity: 0; transform: translateY(12px) scale(.985) }
+.hero .ctas.cta-in   { opacity: 1; transform: none; transition: transform .55s cubic-bezier(.2,.7,.2,1), opacity .55s }
+@media (prefers-reduced-motion: reduce){
+  .hero .ctas { opacity:1 !important; transform:none !important; transition:none !important }
+}
+</style>
+
+
+<style>
+/* === "Por que a Bomman?" feature animations (scoped) === */
+#pq-features { position: relative; }
+#pq-features .feature{
+  --sx: 0px;
+  filter: blur(6px);
+  transition-delay: var(--delay, 0ms);
+  --mx:50%; --my:50%;
+  background:
+    radial-gradient(220px 220px at var(--mx) var(--my), rgba(139,233,221,.10), transparent 55%),
+    linear-gradient(135deg,#ffffff10,#ffffff05);
+  border:1px solid #ffffff22;
+  transform: translate(var(--sx, 0px), 16px) scale(.985);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.9s, box-shadow 0.6s, border-color 0.6s;
+  box-shadow: 0 10px 26px rgba(0,0,0,.25);
+  overflow:hidden;
+  will-change: transform, opacity;
+}
+#pq-features .feature.in{ opacity:1; transform: translate(0, 0) scale(1); filter: none; }
+#pq-features .feature .fi{ display:inline-block; transform: scale(.9); transition: transform .4s ease; }
+#pq-features .feature.in .fi{ animation: pqIconPop .8s var(--delay,0ms) cubic-bezier(.2,.7,.2,1) both; }
+@keyframes pqIconPop { 0%{ transform: scale(.6); opacity:.4 } 60%{ transform: scale(1.15) } 100%{ transform: scale(1); opacity:1 } }
+
+/* hover elevation + diagonal shine */
+#pq-features .feature:hover{ box-shadow: 0 16px 46px rgba(0,0,0,.35); border-color: #8be9dd55; }
+#pq-features .feature::after{
+  content:""; position:absolute; inset:-40%; transform: rotate(20deg) translateX(-120%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.18) 45%, transparent 60%);
+  transition: transform .8s cubic-bezier(.2,.7,.2,1);
+  pointer-events:none;
+}
+#pq-features .feature:hover::after{ transform: rotate(20deg) translateX(40%) }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  #pq-features .feature{
+  --sx: 0px;
+  filter: blur(6px);
+  transition-delay: var(--delay, 0ms); animation:none !important; transition:none !important; opacity:1 !important; transform:none !important }
+  #pq-features .feature::after{ display:none }
+}
+</style>
+
+
+<style>
+/* Alternating slide-in (Por que a Bomman?) */
+#pq-features .feature:nth-child(odd){ --sx: -28px }
+#pq-features .feature:nth-child(even){ --sx: 28px }
+@media (max-width: 680px){
+  #pq-features .feature:nth-child(odd){ --sx: -18px }
+  #pq-features .feature:nth-child(even){ --sx: 18px }
+}
+</style>
+
+
+<style>
+/* === Nossos Serviços: arrival animations (scoped) === */
+#servicos .grid .service-card{
+  --sx: 0px;
+  opacity: 0;
+  transform: translate(var(--sx, 0px), 16px) scale(.985);
+  filter: blur(6px);
+  transition: transform .75s cubic-bezier(.2,.7,.2,1), opacity .75s, filter .75s;
+  transition-delay: var(--delay, 0ms);
+  will-change: transform, opacity, filter;
+}
+#servicos .grid .service-card.in{
+  opacity: 1;
+  transform: translate(0,0) scale(1);
+  filter: none;
+}
+/* Alternância: 1º/3º da esquerda; 2º/4º da direita */
+#servicos .grid .service-card:nth-child(odd){ --sx: -28px }
+#servicos .grid .service-card:nth-child(even){ --sx: 28px }
+@media (max-width: 680px){
+  #servicos .grid .service-card:nth-child(odd){ --sx: -16px }
+  #servicos .grid .service-card:nth-child(even){ --sx: 16px }
+}
+@media (prefers-reduced-motion: reduce){
+  #servicos .grid .service-card{ opacity:1 !important; transform:none !important; filter:none !important; transition:none !important }
+}
+</style>
+
+
+<style>
+/* === Vídeo institucional: arrival from bottom (no blur, scoped) === */
+#video .video-wrap.video-hide { opacity: 0; transform: translateY(24px); }
+#video .video-wrap.video-in   { opacity: 1; transform: none; transition: transform .65s cubic-bezier(.2,.7,.2,1), opacity .65s; }
+#video .video-wrap .video-overlay,
+#video .video-wrap .video-label {
+  opacity: 0; transform: translateY(10px);
+  transition: transform .6s cubic-bezier(.2,.7,.2,1) .12s, opacity .6s .12s;
+}
+#video .video-wrap.video-in .video-overlay,
+#video .video-wrap.video-in .video-label {
+  opacity: 1; transform: none;
+}
+@media (prefers-reduced-motion: reduce){
+  #video .video-wrap{ opacity:1 !important; transform:none !important; transition:none !important }
+  #video .video-wrap .video-overlay, #video .video-wrap .video-label{ opacity:1 !important; transform:none !important; transition:none !important }
+}
+</style>
+
+
+<style>
+/* === Nossos diferenciais: arrival (scoped) === */
+#diferenciais .diff-eyebrow, #diferenciais .diff-title, #diferenciais .diff-sub{
+  opacity: 0; transform: translateY(12px);
+  transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s;
+}
+#diferenciais.diff-in .diff-eyebrow,
+#diferenciais.diff-in .diff-title,
+#diferenciais.diff-in .diff-sub{ opacity:1; transform:none }
+#diferenciais .diff-accordion .diff-item{
+  opacity: 0; transform: translateY(14px);
+  transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s;
+  transition-delay: var(--delay, 0ms);
+  will-change: transform, opacity;
+}
+#diferenciais.diff-in .diff-accordion .diff-item{ opacity:1; transform:none }
+@media (prefers-reduced-motion: reduce){
+  #diferenciais .diff-eyebrow, #diferenciais .diff-title, #diferenciais .diff-sub,
+  #diferenciais .diff-accordion .diff-item{
+    opacity:1 !important; transform:none !important; transition:none !important;
+  }
+}
+</style>
+
+
+<style>
+/* === Líder: arrival (scoped) === */
+#lider .leader.leader-hide { opacity: 0; transform: translateY(18px) scale(.985); }
+#lider .leader.leader-in   { opacity: 1; transform: none; transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s; }
+
+/* optional light stagger on inner content */
+#lider .leader.leader-in img   { transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s; transition-delay: .06s }
+#lider .leader.leader-in h3,
+#lider .leader.leader-in .role,
+#lider .leader.leader-in p,
+#lider .leader.leader-in ul,
+#lider .leader.leader-in .btn { transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s; transition-delay: .12s }
+
+@media (prefers-reduced-motion: reduce){
+  #lider .leader{ opacity:1 !important; transform:none !important; transition:none !important }
+  #lider .leader img,
+  #lider .leader h3,
+  #lider .leader .role,
+  #lider .leader p,
+  #lider .leader ul,
+  #lider .leader .btn{ transition:none !important }
+}
+</style>
+
+
+<style>
+/* === Líder: creative arrival (scoped, no blur) === */
+#lider .leader{ perspective: 900px }
+
+/* Initial states for split entrance */
+#lider .leader.leader-hide > img{
+  opacity: 0;
+  transform: translateX(-28px) translateY(6px) rotate(-2deg) scale(.995);
+}
+#lider .leader.leader-hide > div{
+  opacity: 0;
+  transform: translateX(28px) translateY(6px) scale(.995);
+}
+
+/* Animate in */
+#lider .leader > img,
+#lider .leader > div{
+  transition: transform .85s cubic-bezier(.2,.7,.2,1), opacity .85s;
+  will-change: transform, opacity;
+}
+#lider .leader.leader-in > img,
+#lider .leader.leader-in > div{
+  opacity: 1;
+  transform: none;
+}
+
+/* Micro-lift on image hover for a premium feel */
+#lider .leader:hover > img{
+  transform: translateY(-4px) rotate(.6deg) scale(1.01);
+  transition-duration: .4s;
+}
+
+/* CTA shimmer on hover (only inside Líder) */
+#lider .leader .btn{ position: relative; overflow: hidden }
+#lider .leader .btn::after{
+  content:""; position:absolute; inset:-20% -60%; transform: rotate(18deg) translateX(-120%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.28) 45%, transparent 60%);
+  transition: transform .7s cubic-bezier(.2,.7,.2,1);
+  pointer-events:none;
+}
+#lider .leader .btn:hover::after{ transform: rotate(18deg) translateX(20%) }
+
+@media (prefers-reduced-motion: reduce){
+  #lider .leader > img,
+  #lider .leader > div{ transition: none !important; transform: none !important; opacity: 1 !important }
+  #lider .leader:hover > img{ transform: none !important }
+  #lider .leader .btn::after{ display:none }
+}
+</style>
+
+
+<style>
+/* === Fale Conosco: arrival (scoped) === */
+#contato .header-row.fc-hide { opacity: 0; transform: translateY(10px); }
+#contato .header-row.fc-in   { opacity: 1; transform: none; transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s; }
+
+#contato .contact.fc-hide { opacity: 0; transform: translateY(16px); }
+#contato .contact.fc-in   { opacity: 1; transform: none; transition: transform .65s cubic-bezier(.2,.7,.2,1), opacity .65s; }
+
+/* Stagger inside the grid */
+#contato .contact .form,
+#contato .contact .aside .tile{
+  opacity: 0; transform: translateY(12px);
+  transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s;
+  transition-delay: var(--delay, 0ms);
+}
+#contato .contact.fc-in .form,
+#contato .contact.fc-in .aside .tile{ opacity:1; transform:none }
+
+/* Stagger the form fields for a polished feel */
+#contato .form .field,
+#contato .form .btn-send{ opacity:0; transform: translateY(8px); transition: transform .5s cubic-bezier(.2,.7,.2,1), opacity .5s; transition-delay: var(--delay, 0ms) }
+#contato .contact.fc-in .form .field,
+#contato .contact.fc-in .form .btn-send{ opacity:1; transform:none }
+
+@media (prefers-reduced-motion: reduce){
+  #contato .header-row, #contato .contact,
+  #contato .contact .form, #contato .contact .aside .tile,
+  #contato .form .field, #contato .form .btn-send{
+    opacity:1 !important; transform:none !important; transition:none !important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="progress" id="progress"></div>
@@ -384,7 +635,7 @@ details.diff-item:not([open]) .diff-content{ display:none; }
       <div class="metric"><b class="count" data-target="30">0</b>Projetos entregues</div>
       <div class="metric"><b class="count" data-target="18">0</b>Reformas concluídas</div>
       <div class="metric"><b class="count" data-target="12">0</b>Obras em andamento</div>
-      <div class="metric"><b class="count-static">+20.000&nbsp;m²</b><br>Executados</div>
+      <div class="metric"><b class="count" data-target="20000" data-prefix="+" data-suffix=" m²" data-format="br">0</b><br>Executados</div>
     </div>
   </div>
 </section>
@@ -412,7 +663,7 @@ details.diff-item:not([open]) .diff-content{ display:none; }
       <p class="sub">Diferenciais que viram recomendações</p>
     </div>
     <div class="center" style="margin:10px 0 16px"></div>
-    <div class="features">
+    <div id="pq-features" class="features">
       <div class="feature reveal">
         <i class="fi fa-solid fa-bolt"></i>
         <h3>Rapidez</h3>
@@ -861,18 +1112,50 @@ const toggleTop=()=>{ if(window.scrollY>600) topBtn.classList.add('show'); else 
 document.addEventListener('scroll', toggleTop); toggleTop();
 topBtn.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
 
-// ======= Counters =======
-const counters=[...document.querySelectorAll('.count')];
-const ioc=new IntersectionObserver((es)=>es.forEach(e=>{
-  if(e.isIntersecting){
-    const el=e.target, target=+el.dataset.target; let cur=0;
-    const step=Math.max(1,Math.floor(target/80));
-    const t=setInterval(()=>{ cur+=step; if(cur>=target){cur=target; clearInterval(t);} el.textContent=cur; },20);
-    ioc.unobserve(el);
-  }
-}),{threshold:.6});
-counters.forEach(c=>ioc.observe(c));
 
+// ======= Counters =======
+(function(){
+  const counters = Array.from(document.querySelectorAll('.count'));
+  if(!counters.length) return;
+
+  const formatters = {
+    br: new Intl.NumberFormat('pt-BR'),
+    en: new Intl.NumberFormat('en-US')
+  };
+
+  function animate(el){
+    const target   = Number(el.dataset.target || 0);
+    const duration = Number(el.dataset.duration || 1600);
+    const prefix   = el.dataset.prefix || '';
+    const suffix   = el.dataset.suffix || '';
+    const fmtKey   = el.dataset.format || '';
+    const fmt      = formatters[fmtKey] || null;
+
+    const start = performance.now();
+    const from  = 0;
+
+    function frame(now){
+      const t = Math.min(1, (now - start) / duration);
+      // easeOutCubic
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.round(from + (target - from) * eased);
+      el.textContent = prefix + (fmt ? fmt.format(val) : String(val)) + suffix;
+      if(t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        animate(e.target);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: .6 });
+
+  counters.forEach(c => obs.observe(c));
+})();
 // ======= Portfolio carousel =======
 const track=document.getElementById('carTrack');
 const slides=[...track.children];
@@ -1218,6 +1501,220 @@ $(document).ready(function(){
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initVideoControls);
   else initVideoControls();
+})();
+</script>
+
+
+<script>
+// CTA scroll-in (hero only)
+(function(){
+  function init(){
+    var hero = document.querySelector('.hero');
+    var ctas = document.querySelector('.hero .ctas');
+    if(!hero || !ctas) return;
+    // Hide only after JS is ready (no-FOUC)
+    ctas.classList.add('cta-hide');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          ctas.classList.add('cta-in');
+          ctas.classList.remove('cta-hide');
+          io.disconnect();
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
+    io.observe(hero);
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+
+
+<script>
+// "Por que a Bomman?" — stagger + icon pop + mouse-follow glow
+(function(){
+  function initPQ(){
+    var wrap = document.getElementById('pq-features');
+    if(!wrap) return;
+    var cards = Array.prototype.slice.call(wrap.querySelectorAll('.feature'));
+
+    // Stagger when container enters viewport
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          cards.forEach(function(c, i){
+            c.style.setProperty('--delay', (i*140)+'ms');
+            c.classList.add('in');
+          });
+          io.disconnect();
+        }
+      });
+    }, { threshold:.25 });
+    io.observe(wrap);
+
+    // Mouse-follow inner glow per card
+    cards.forEach(function(card){
+      card.addEventListener('mousemove', function(ev){
+        var r = card.getBoundingClientRect();
+        var mx = ((ev.clientX - r.left) / r.width) * 100;
+        var my = ((ev.clientY - r.top)  / r.height) * 100;
+        card.style.setProperty('--mx', mx + '%');
+        card.style.setProperty('--my', my + '%');
+      });
+      card.addEventListener('mouseleave', function(){
+        card.style.removeProperty('--mx');
+        card.style.removeProperty('--my');
+      });
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initPQ);
+  else initPQ();
+})();
+</script>
+
+
+<script>
+// Nossos Serviços: alternate slide-in on scroll (scoped)
+(function(){
+  function initServicos(){
+    var grid = document.querySelector('#servicos .grid');
+    if(!grid) return;
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.service-card'));
+    if(!cards.length) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          cards.forEach(function(c,i){
+            c.style.setProperty('--delay', (i*120)+'ms'); // stagger
+            c.classList.add('in');
+          });
+          io.disconnect();
+        }
+      });
+    }, { threshold: .22 });
+    io.observe(grid);
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initServicos);
+  else initServicos();
+})();
+</script>
+
+
+<script>
+// Vídeo institucional: scroll-in from bottom (no blur, scoped)
+(function(){
+  function initVideoArrival(){
+    var wrap = document.querySelector('#video .video-wrap');
+    if(!wrap) return;
+    // Hide only if JS is running (no FOUC)
+    wrap.classList.add('video-hide');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          wrap.classList.add('video-in');
+          wrap.classList.remove('video-hide');
+          io.disconnect();
+        }
+      });
+    }, { threshold: .22 });
+    io.observe(wrap);
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initVideoArrival);
+  else initVideoArrival();
+})();
+</script>
+
+
+<script>
+// Nossos diferenciais: scroll-in arrival (scoped)
+(function(){
+  function initDiffArrival(){
+    var sec = document.getElementById('diferenciais');
+    if(!sec) return;
+    var items = Array.prototype.slice.call(sec.querySelectorAll('.diff-accordion .diff-item'));
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          // Stagger delays for items
+          items.forEach(function(it, i){ it.style.setProperty('--delay', (i*110)+'ms'); });
+          sec.classList.add('diff-in');
+          io.disconnect();
+        }
+      });
+    }, { threshold: .2 });
+    io.observe(sec);
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initDiffArrival);
+  else initDiffArrival();
+})();
+</script>
+
+
+<script>
+// Líder: scroll-in arrival (scoped)
+(function(){
+  function initLeaderArrival(){
+    var leader = document.querySelector('#lider .leader');
+    if(!leader) return;
+    // Hide only if JS is running
+    leader.classList.add('leader-hide');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          leader.classList.add('leader-in');
+          leader.classList.remove('leader-hide');
+          io.disconnect();
+        }
+      });
+    }, { threshold: .2 });
+    io.observe(leader);
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initLeaderArrival);
+  else initLeaderArrival();
+})();
+</script>
+
+
+<script>
+// Fale Conosco: scroll-in arrival (scoped)
+(function(){
+  function initContatoArrival(){
+    var sec = document.getElementById('contato');
+    if(!sec) return;
+    var header = sec.querySelector('.header-row');
+    var grid   = sec.querySelector('.contact');
+    if(header) header.classList.add('fc-hide');
+    if(grid)   grid.classList.add('fc-hide');
+
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          if(header){ header.classList.add('fc-in'); header.classList.remove('fc-hide'); }
+          if(grid){
+            // Stagger for form vs tiles
+            var form = grid.querySelector('.form');
+            var tiles = Array.prototype.slice.call(grid.querySelectorAll('.aside .tile'));
+            if(form) form.style.setProperty('--delay', '80ms');
+            tiles.forEach(function(t,i){ t.style.setProperty('--delay', (160 + i*100) + 'ms'); });
+
+            // Stagger inside the form (fields + button)
+            var fields = Array.prototype.slice.call(grid.querySelectorAll('.form .field'));
+            fields.forEach(function(f,i){ f.style.setProperty('--delay', (120 + i*80) + 'ms'); });
+            var btn = grid.querySelector('.form .btn-send');
+            if(btn) btn.style.setProperty('--delay', (120 + fields.length*80) + 'ms');
+
+            grid.classList.add('fc-in');
+            grid.classList.remove('fc-hide');
+          }
+          io.disconnect();
+        }
+      });
+    }, { threshold: .18 });
+    io.observe(sec);
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initContatoArrival);
+  else initContatoArrival();
 })();
 </script>
 
