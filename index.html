@@ -603,6 +603,43 @@ details.diff-item:not([open]) .diff-content{ display:none; }
 }
 </style>
 
+
+<style>
+/* Patch mínimo: desabilita apenas o scroll horizontal sem alterar layout/funcionalidade */
+html, body { max-width: 100%; overflow-x: hidden; }
+</style>
+
+
+<style>
+
+/* Desktop-only: mantém o número do 4º card em uma linha e alinha com os demais */
+@media (min-width: 1025px){
+  .metrics .metric:nth-child(4) b { white-space: nowrap; }
+}
+
+</style>
+
+<style>
+
+/* ===== PATCH: Setas visíveis no carrossel de depoimentos (somente mobile) ===== */
+@media (max-width: 640px){
+  .ha-slick-carousel .slick-prev,
+  .ha-slick-carousel .slick-next{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+  }
+  .ha-slick-carousel .slick-prev{ left: 8px !important; }
+  .ha-slick-carousel .slick-next{ right: 8px !important; }
+}
+
+</style>
 </head>
 <body>
 <div class="progress" id="progress"></div>
@@ -635,7 +672,7 @@ details.diff-item:not([open]) .diff-content{ display:none; }
       <div class="metric"><b class="count" data-target="30">0</b>Projetos entregues</div>
       <div class="metric"><b class="count" data-target="18">0</b>Reformas concluídas</div>
       <div class="metric"><b class="count" data-target="12">0</b>Obras em andamento</div>
-      <div class="metric"><b class="count" data-target="20000" data-prefix="+" data-suffix=" m²" data-format="br">0</b><br>Executados</div>
+      <div class="metric"><b class="count" data-target="20000" data-prefix="+" data-suffix=" m²" data-format="br">0</b>Executados</div>
     </div>
   </div>
 </section>
@@ -1715,6 +1752,98 @@ $(document).ready(function(){
   }
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initContatoArrival);
   else initContatoArrival();
+})();
+</script>
+
+
+<!-- PATCH: centralização do celular no carrossel de depoimentos (mobile) -->
+<style>
+/* Escopo: apenas ".ha-slick-carousel" (não afeta outros carrosséis) */
+@media (max-width: 640px){
+  .ha-slick-carousel .slick-slide {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .ha-slick-carousel .phone-item {
+    width: 100%;
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+  }
+  .ha-slick-carousel .slick-track {
+    display: flex !important;
+    align-items: center;
+  }
+}
+</style>
+
+
+<!-- ===== PATCH: Mobile menu (abre/fecha fora do menu, sempre abre ao clicar) ===== -->
+<script>
+(function(){
+  var hamburger = document.querySelector('.hamburger');
+  var nav = document.querySelector('.nav-links');
+  if(!hamburger || !nav) return;
+
+  // Remove possíveis listeners antigos clonando o botão
+  var hb = hamburger.cloneNode(true);
+  hamburger.parentNode.replaceChild(hb, hamburger);
+  hamburger = hb;
+
+  function isMobile(){
+    // cobre os dois breakpoints usados no CSS
+    return window.matchMedia('(max-width: 900px)').matches;
+  }
+
+  function openNav(){
+    nav.classList.add('open');
+    if(isMobile()){
+      // garante que apareça SEMPRE em mobile
+      nav.style.display = 'grid';
+    }
+  }
+  function closeNav(){
+    nav.classList.remove('open');
+    if(isMobile()){
+      nav.style.display = 'none';
+    }
+  }
+  function toggleNav(){
+    if(nav.classList.contains('open')) closeNav();
+    else openNav();
+  }
+
+  // Abre/fecha ao clicar no ícone (sempre funciona)
+  hamburger.addEventListener('click', function(e){
+    e.stopPropagation();
+    toggleNav();
+  });
+
+  // Fecha clicando fora do menu
+  document.addEventListener('click', function(e){
+    if(!nav.classList.contains('open')) return;
+    var clickedInsideMenu = nav.contains(e.target);
+    var clickedHamburger = hamburger.contains(e.target);
+    if(!clickedInsideMenu && !clickedHamburger){
+      closeNav();
+    }
+  });
+
+  // Fecha com ESC
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeNav();
+  });
+
+  // Em desktop, limpa estilos inline
+  window.addEventListener('resize', function(){
+    if(!isMobile()){
+      nav.classList.remove('open');
+      nav.style.display = '';
+    } else {
+      // Em mobile, se estiver aberto, garante display correto
+      if(nav.classList.contains('open')) nav.style.display = 'grid';
+    }
+  });
 })();
 </script>
 
