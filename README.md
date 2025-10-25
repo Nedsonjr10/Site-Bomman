@@ -15,7 +15,7 @@ Animações e carrosséis suaves, sem comprometer o desempenho;
 
 Design profissional e confiável, de acordo com o segmento de engenharia civil e construção.
 
-🧩 Tecnologias e Ferramentas Utilizadas
+## 🧩 Tecnologias e Ferramentas Utilizadas
 
 HTML5 → Estrutura do site e organização semântica das seções;
 
