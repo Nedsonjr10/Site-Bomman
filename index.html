@@ -667,6 +667,35 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 </style>
 
+
+<style>
+/* === PREROLL 1s + fade suave do vídeo (escopo: .videobox) === */
+.videobox .vb-pre {
+  position: absolute; inset: 0;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.85);
+  z-index: 3;
+}
+.videobox .vb-pre.show { display: flex; animation: vbPreIn .25s ease both; }
+
+.videobox .vb-pre .playwrap{
+  width: 96px; height: 96px; border-radius: 999px;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,0.92); color: #0b1e39;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  transform: scale(.94);
+  animation: vbPulse 1s ease infinite;
+}
+.videobox .vb-pre .playwrap i{ font-size: 34px; }
+
+/* Fade suave do vídeo ao iniciar */
+.videobox video.vb-fade { opacity: 0; transition: opacity .45s ease; }
+.videobox video.vb-fade.show { opacity: 1; }
+
+@keyframes vbPreIn { from { opacity: 0 } to { opacity: 1 } }
+@keyframes vbPulse { 0%{ transform: scale(.94) } 50%{ transform: scale(1) } 100%{ transform: scale(.94) } }
+</style>
+
 </head>
 <body>
 <div class="progress" id="progress"></div>
@@ -1903,6 +1932,77 @@ $(document).ready(function(){
   });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeNav(); });
   window.addEventListener('resize', function(){ if(!isMobile()) closeNav(); });
+})();
+</script>
+
+
+<script>
+// === PREROLL v1s: overlay por 1s e vídeo com fade suave (não altera outras partes) ===
+(function(){
+  function init(){
+    var btn = document.getElementById('openVideo');
+    var box = document.getElementById('videobox');
+    var video = document.getElementById('vbVideo');
+    if(!btn || !box || !video) return;
+
+    // Garante classe de fade no vídeo
+    if(!video.classList.contains('vb-fade')) video.classList.add('vb-fade');
+
+    // Cria overlay se não existir
+    var inner = box.querySelector('.videobox-inner') || box;
+    var pre = inner.querySelector('.vb-pre');
+    if(!pre){
+      pre = document.createElement('div');
+      pre.className = 'vb-pre';
+      pre.innerHTML = '<div class="playwrap"><i class="fa-solid fa-play"></i></div>';
+      inner.appendChild(pre);
+    }
+
+    function openModal(){
+      box.classList.add('open');
+      box.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      box.classList.remove('open');
+      box.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      try { video.pause(); video.currentTime = 0; } catch(e){}
+      pre.classList.remove('show');
+      video.classList.remove('show');
+    }
+
+    // FECHAR (mantém comportamentos existentes)
+    var vbClose = box.querySelector('.vb-close');
+    if(vbClose) vbClose.addEventListener('click', function(e){ e.preventDefault(); closeModal(); }, { capture: true });
+    box.addEventListener('click', function(e){ if(e.target === box) closeModal(); }, { capture: true });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+    // ABRIR com preroll: captura cedo e cancela handlers que tocariam o vídeo direto
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      if(typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+
+      openModal();
+
+      try { video.pause(); video.currentTime = 0; } catch(e){}
+      pre.classList.add('show');
+      video.classList.remove('show'); // garante início em fade
+
+      // Após 1s, some overlay e inicia vídeo com fade
+      setTimeout(function(){
+        pre.classList.remove('show');
+        // Toca o vídeo e aplica fade suave
+        var p = video.play();
+        video.classList.add('show');
+        if(p && typeof p.catch === 'function'){ p.catch(function(){ /* ignore autoplay block */ }); }
+      }, 1000);
+    }, { capture: true });
+
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
 </script>
 
