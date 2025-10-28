@@ -640,6 +640,33 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 
 </style>
+
+<style>
+/* ===== FINAL PATCH: menu mobile à direita, sem alterar o restante ===== */
+@media (max-width: 900px){
+  header .nav-links{
+    position: absolute !important;
+    top: 60px !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 220px !important;
+    transform: none !important;        /* cancela slide full-width */
+    background: #0a1a31 !important;
+    border-radius: 10px !important;
+    border: 1px solid #ffffff1a !important;
+    padding: 10px !important;
+    display: none;                     /* fechado por padrão */
+    z-index: 1200 !important;
+  }
+  header .nav-links.open{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  header .nav-links a{ padding: 8px 6px !important; }
+}
+</style>
+
 </head>
 <body>
 <div class="progress" id="progress"></div>
@@ -814,7 +841,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
       <div class="diff-accordion">
         <details class="diff-item" open>
-          <summary class="diff-summary"><span class="icon">📊</span> <b>Sistema de gestão completo</b></summary>
+          <summary class="diff-summary"><span class="icon"><img src="Sistema de gestao completo todo branco.png" alt="Sistema de gestão completo" style="width:48px;height:48px;object-fit:contain;display:inline-block;vertical-align:-6px;"></span> <b>Sistema de gestão completo</b></summary>
           <div class="diff-content">
             <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop" alt="Relatórios e dashboards">
             <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Planilhas e indicadores">
@@ -822,7 +849,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
         </details>
 
         <details class="diff-item">
-          <summary class="diff-summary"><span class="icon">📷</span> <b>Diário de obras (fotos e relatórios)</b></summary>
+          <summary class="diff-summary"><span class="icon"><img src="Diario de obra todo branco.png" alt="Diário de obras" style="width:48px;height:48px;object-fit:contain;display:inline-block;vertical-align:-6px;"></span> <b>Diário de obras (fotos e relatórios)</b></summary>
           <div class="diff-content">
             <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2b8f?q=80&w=1200&auto=format&fit=crop" alt="Registro fotográfico">
             <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1200&auto=format&fit=crop" alt="Relato técnico">
@@ -830,7 +857,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
         </details>
 
         <details class="diff-item">
-          <summary class="diff-summary"><span class="icon">👷</span> <b>Equipe presente em campo</b></summary>
+          <summary class="diff-summary"><span class="icon"><img src="Equipe presente em campo engenharia  todo branco.png" alt="Equipe presente em campo" style="width:48px;height:48px;object-fit:contain;display:inline-block;vertical-align:-6px;"></span> <b>Equipe presente em campo</b></summary>
           <div class="diff-content">
             <img src="https://images.unsplash.com/photo-1532635026-8b9fb99825c7?q=80&w=1200&auto=format&fit=crop" alt="Supervisão diária">
             <img src="https://images.unsplash.com/photo-1444419988131-046ed4e5ffd6?q=80&w=1200&auto=format&fit=crop" alt="Execução com qualidade">
@@ -838,7 +865,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
         </details>
 
         <details class="diff-item">
-          <summary class="diff-summary"><span class="icon">✅</span> <b>Qualidade e controle por etapa</b></summary>
+          <summary class="diff-summary"><span class="icon"><img src="Qualidade e controle por etapa todo branco.png" alt="Qualidade e controle por etapa" style="width:48px;height:48px;object-fit:contain;display:inline-block;vertical-align:-6px;"></span> <b>Qualidade e controle por etapa</b></summary>
           <div class="diff-content">
             <img src="https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1200&auto=format&fit=crop" alt="Checklist e inspeções">
             <img src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1200&auto=format&fit=crop" alt="Padrão de acabamento">
@@ -1844,6 +1871,38 @@ $(document).ready(function(){
       if(nav.classList.contains('open')) nav.style.display = 'grid';
     }
   });
+})();
+</script>
+
+
+<script>
+// ===== FINAL PATCH: toggle do menu (abre/fecha no ícone e fecha clicando fora/ESC) =====
+(function(){
+  var hamburger = document.querySelector('.hamburger');
+  var nav = document.querySelector('.nav-links');
+  if(!hamburger || !nav) return;
+
+  // Remove possíveis listeners antigos clonando o botão
+  var hb = hamburger.cloneNode(true);
+  hamburger.parentNode.replaceChild(hb, hamburger);
+  hamburger = hb;
+
+  function isMobile(){ return window.matchMedia('(max-width: 900px)').matches; }
+  function openNav(){ nav.classList.add('open'); }
+  function closeNav(){ nav.classList.remove('open'); }
+  function toggleNav(){ nav.classList.contains('open') ? closeNav() : openNav(); }
+
+  hamburger.addEventListener('click', function(e){ e.stopPropagation(); toggleNav(); });
+  nav.addEventListener('click', function(e){ e.stopPropagation(); });
+
+  document.addEventListener('click', function(e){
+    if(!nav.classList.contains('open')) return;
+    var clickedInside = nav.contains(e.target);
+    var clickedBtn = hamburger.contains(e.target);
+    if(!clickedInside && !clickedBtn) closeNav();
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeNav(); });
+  window.addEventListener('resize', function(){ if(!isMobile()) closeNav(); });
 })();
 </script>
 
