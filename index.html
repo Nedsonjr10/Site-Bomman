@@ -287,6 +287,20 @@ h1,h2,h3{margin:0 0 10px;font-family:'Josefin Sans',sans-serif;}
   display:grid;place-items:center;cursor:pointer}
 @media (max-width:720px){.vb-close{top:-56px}}
 
+
+/* === Ajuste mobile: evidências (imagens maiores no celular) === */
+@media (max-width: 768px) {
+  .diff-accordion .diff-content {
+    padding: 0 16px 16px 16px !important;
+    gap: 14px !important;
+  }
+  .diff-accordion .diff-content img {
+    width: 85vw !important;
+    max-width: 85vw !important;
+    flex: 0 0 auto !important;
+  }
+}
+
 </style>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
