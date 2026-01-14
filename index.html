@@ -144,7 +144,7 @@ h1,h2,h3{margin:0 0 10px;font-family:'Josefin Sans',sans-serif;}
 .role{opacity:.9}
 
 /* Metrics counters */
-.metrics{display:grid;gap:18px;grid-template-columns:repeat(4,1fr)}
+.metrics{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));justify-content:center}
 @media (max-width:1024px){.metrics{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:640px){.metrics{grid-template-columns:1fr}}
 .metric{background:#ffffff0f;border:1px solid #ffffff22;border-radius:16px;padding:20px;text-align:center}
@@ -718,17 +718,16 @@ html, body { max-width: 100%; overflow-x: hidden; }
 <section class="hero" id="home">
   <div class="inner container reveal">
     <span class="badge">Qualidade • Prazo • Transparência</span>
-    <h1>Construções e Reformas com rapidez, segurança e o <em>Padrão Bomman</em></h1>
-    <p>Obras residenciais e comerciais do planejamento à entrega, com gestão de prazos, custos e comunicação clara.</p>
+    <h1>Construções e Reformas com rapidez, segurança e o <em>Padrão de excelência Bomman</em></h1>
+    <p>Realizamos obras comerciais e residenciais desde o planejamento à entrega, com gestão de prazos, custos e comunicação clara.</p>
     <div class="ctas">
       <a class="btn" href="#contato"><i class="fa-solid fa-paper-plane"></i> Solicitar orçamento</a>
       <a class="btn btn-outline" href="#portfolio"><i class="fa-regular fa-folder-open"></i> Ver projetos</a>
     </div>
     <div class="metrics mt-6">
-      <div class="metric"><b class="count" data-target="30">0</b>Projetos entregues</div>
-      <div class="metric"><b class="count" data-target="18">0</b>Reformas concluídas</div>
+      <div class="metric"><b class="count" data-target="30" data-prefix="+ ">0</b>Obras Entregues</div>
       <div class="metric"><b class="count" data-target="12">0</b>Obras em andamento</div>
-      <div class="metric"><b class="count" data-target="20000" data-prefix="+" data-suffix=" m²" data-format="br">0</b>Executados</div>
+      <div class="metric"><b class="count" data-target="80000" data-prefix="+ " data-suffix=" m²" data-format="br">0</b>Executados</div>
     </div>
   </div>
 </section>
@@ -956,31 +955,27 @@ html, body { max-width: 100%; overflow-x: hidden; }
         <img src="cliente1.png" alt="Depoimento Cliente 1">
       </div>
     </div>
-
     <div class="phone-item">
       <div class="phone-frame">
         <img src="cliente2.jpeg" alt="Depoimento Cliente 2">
       </div>
     </div>
-
+    <div class="phone-item">
+      <div class="phone-frame">
+        <img src="cliente4.png" alt="Depoimento Cliente 4">
+      </div>
+    </div>
+<div class="phone-item">
+      <div class="phone-frame">
+        <img src="cliente5.png" alt="Depoimento Cliente 5">
+      </div>
+    </div>
     <div class="phone-item">
       <div class="phone-frame">
         <img src="cliente3.jpeg" alt="Depoimento Cliente 3">
       </div>
     </div>
 
-    <!-- Prints genéricos para exemplo -->
-    <div class="phone-item">
-      <div class="phone-frame">
-        <img src="cliente4.png" alt="Depoimento Cliente 4">
-      </div>
-    </div>
-
-    <div class="phone-item">
-      <div class="phone-frame">
-        <img src="cliente5.png" alt="Depoimento Cliente 5">
-      </div>
-    </div>
 
   </div>
 </section>
