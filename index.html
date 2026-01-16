@@ -288,16 +288,40 @@ h1,h2,h3{margin:0 0 10px;font-family:'Josefin Sans',sans-serif;}
 @media (max-width:720px){.vb-close{top:-56px}}
 
 
-/* === Ajuste mobile: evidências (imagens maiores no celular) === */
-@media (max-width: 768px) {
-  .diff-accordion .diff-content {
-    padding: 0 16px 16px 16px !important;
-    gap: 14px !important;
-  }
-  .diff-accordion .diff-content img {
-    width: 85vw !important;
-    max-width: 85vw !important;
-    flex: 0 0 auto !important;
+/* --- Endereço (apenas este card) --- */
+.endereco-tile .endereco-link{
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+.endereco-tile .end-title{
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+.endereco-tile .end-line{
+  margin: 0;
+  opacity: .95;
+  line-height: 1.35;
+}
+.endereco-tile .end-sep{
+  height: 1px;
+  background: rgba(255,255,255,.14);
+  margin: 12px 0;
+}
+.endereco-tile .end-meta{
+  margin: 6px 0;
+  font-size: .95rem;
+  opacity: .95;
+}
+.endereco-tile .btn--map{
+  padding: 10px 14px;
+  font-size: .95rem;
+  margin-top: 8px;
+}
+@media (max-width: 520px){
+  .endereco-tile .btn--map{
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -732,8 +756,8 @@ html, body { max-width: 100%; overflow-x: hidden; }
 <section class="hero" id="home">
   <div class="inner container reveal">
     <span class="badge">Qualidade • Prazo • Transparência</span>
-    <h1>Construções e Reformas com rapidez, segurança e o <em>Padrão de excelência Bomman</em></h1>
-    <p>Realizamos obras comerciais e residenciais desde o planejamento à entrega, com gestão de prazos, custos e comunicação clara.</p>
+    <h1>Construções e Reformas com rapidez, segurança e o <em>Padrão Bomman</em></h1>
+    <p>Obras residenciais e comerciais do planejamento à entrega, com gestão de prazos, custos e comunicação clara.</p>
     <div class="ctas">
       <a class="btn" href="#contato"><i class="fa-solid fa-paper-plane"></i> Solicitar orçamento</a>
       <a class="btn btn-outline" href="#portfolio"><i class="fa-regular fa-folder-open"></i> Ver projetos</a>
@@ -1065,8 +1089,8 @@ $(document).ready(function(){
       <img loading="lazy" src="amadeu.jpg" alt="Amadeu Bomman — Engenheiro Civil">
       <div>
         <h3>Amadeu Bomman</h3>
-        <div class="role">Engenheiro Civil</div>
-        <p class="mt-6">Conduz cada projeto com planejamento, segurança e transparência. Experiência em estruturas, gestão de obras e relacionamento com o cliente.</p>
+        <div class="role">Engenheiro Civil • Especialização em Engenharia de Segurança do Trabalho • MBA em Gestão de Pessoas (Liderança)</div>
+        <p class="mt-6">Conduz cada projeto com planejamento, segurança e transparência. Engenheiro civil, com especialização em Engenharia de Segurança do Trabalho e MBA em Gestão de Pessoas com foco em liderança organizacional. Mas mais do que títulos, carrega experiências que moldaram seu olhar sobre o que realmente significa construir.</p>
         <ul>
           <li>CREA ativo • Atualização contínua</li>
           <li>Gestão de cronograma e orçamento</li>
@@ -1129,10 +1153,21 @@ $(document).ready(function(){
             <a href="mailto:contato@bomman.com.br" aria-label="E-mail"><i class="fa-solid fa-envelope"></i></a>
           </div>
         </div>
-        <div class="tile">
+        <div class="tile endereco-tile">
           <h3>Endereço</h3>
-          <p>Recife — PE • Atendemos região metropolitana</p>
-          <small>Seg–Sex • 08h–18h</small>
+
+          <a class="endereco-link" href="https://www.google.com/maps/search/?api=1&query=International%20Trade%20Center%20%28ITC%29%20-%20Av.%20Ant%C3%B4nio%20de%20G%C3%B3es%20275%20-%20Sala%201102%20-%20Pina%2C%20Recife%20-%20PE%2C%2051110-000" target="_blank" rel="noopener">
+            <p class="end-title">International Trade Center (ITC)</p>
+            <p class="end-line">Av. Antônio de Góes, 275 • Sala 1102</p>
+            <p class="end-line">Pina — Recife/PE • CEP 51110-000</p>
+          </a>
+
+          <div class="end-sep"></div>
+
+          <p class="end-meta"><strong>Região atendida:</strong> Pernambuco • Paraíba</p>
+          <p class="end-meta"><strong>Atendimento:</strong> Seg–Sex • 08h–18h</p>
+
+          <a class="btn btn--map" href="https://www.google.com/maps/search/?api=1&query=International%20Trade%20Center%20%28ITC%29%20-%20Av.%20Ant%C3%B4nio%20de%20G%C3%B3es%20275%20-%20Sala%201102%20-%20Pina%2C%20Recife%20-%20PE%2C%2051110-000" target="_blank" rel="noopener">Como chegar</a>
         </div>
       </aside>
     </div>
