@@ -745,6 +745,44 @@ html, body { max-width: 100%; overflow-x: hidden; }
 @keyframes vbPulse { 0%{ transform: scale(.94) } 50%{ transform: scale(1) } 100%{ transform: scale(.94) } }
 </style>
 
+
+
+<style>
+/* ===== PATCH: #diferenciais imagens maiores (somente mobile) ===== */
+@media (max-width: 768px){
+  #diferenciais .diff-wrap{
+    min-height: auto !important;
+    padding: 36px 0 !important;
+  }
+  #diferenciais .diff-wrap .container{
+    margin: 40px auto !important;
+  }
+  /* menos recuo no conteúdo para ganhar largura */
+  #diferenciais .diff-content{
+    padding: 12px 14px 18px 14px !important;
+    gap: 12px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+  /* imagens bem maiores no carrossel horizontal */
+  #diferenciais .diff-content img{
+    flex: 0 0 88% !important;
+    width: 88% !important;
+    max-width: 88% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    scroll-snap-align: start;
+  }
+}
+@media (max-width: 480px){
+  #diferenciais .diff-content img{
+    flex-basis: 92% !important;
+    width: 92% !important;
+    max-width: 92% !important;
+  }
+}
+</style>
 </head>
 <body>
 <div class="progress" id="progress"></div>
