@@ -336,22 +336,6 @@ h1,h2,h3{margin:0 0 10px;font-family:'Josefin Sans',sans-serif;}
   }
 }
 
-
-/* Mobile tweak: Diferenciais section - make images bigger on small screens */
-@media (max-width: 600px){
-  #diferenciais .diff-content{
-    padding: 0 14px 16px 14px !important;
-    gap: 12px !important;
-  }
-  #diferenciais .diff-content img{
-    flex: 0 0 88% !important;
-    width: 88% !important;
-    max-width: 88% !important;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.25);
-  }
-}
-
 </style>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -761,37 +745,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
 @keyframes vbPulse { 0%{ transform: scale(.94) } 50%{ transform: scale(1) } 100%{ transform: scale(.94) } }
 </style>
 
-
-
-<style>
-/* ===== FINAL PATCH: Diferenciais - imagens maiores no mobile (somente esta seção) ===== */
-@media (max-width: 680px){
-  #diferenciais .diff-content{
-    padding: 0 16px 18px 16px !important;
-    gap: 14px !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-  }
-  #diferenciais .diff-content img{
-    flex: 0 0 88% !important;
-    width: 88% !important;
-    max-width: 88% !important;
-    height: 260px !important;
-    object-fit: cover !important;
-    border-radius: 14px !important;
-    scroll-snap-align: start;
-  }
-}
-@media (max-width: 420px){
-  #diferenciais .diff-content img{
-    flex-basis: 92% !important;
-    width: 92% !important;
-    max-width: 92% !important;
-    height: 240px !important;
-  }
-}
-</style>
 </head>
 <body>
 <div class="progress" id="progress"></div>
