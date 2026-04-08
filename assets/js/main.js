@@ -297,19 +297,27 @@ $(document).ready(function(){
 (function(){
   // Safety: only run when DOM is ready
   function initVideoControls(){
-    const openBtn = document.getElementById('openVideo');
     const videobox = document.getElementById('videobox');
     const vbVideo = document.getElementById('vbVideo');
+    const vbSource = document.getElementById('vbSource');
     const vbClose = document.querySelector('.vb-close');
 
-    if(!openBtn || !videobox || !vbVideo) return;
+    if(!videobox || !vbVideo) return;
 
-    function openVideo(){
+    function setVideoSrc(src){
+      if(!src) return;
+      if(vbSource) vbSource.setAttribute('src', src);
+      vbVideo.src = src;
+      try{ vbVideo.load(); }catch(e){/* ignore */}
+    }
+
+    function openVideo(src){
       // show modal and play
       videobox.classList.add('open');
       videobox.setAttribute('aria-hidden','false');
       document.body.style.overflow = 'hidden';
       // try to play; some browsers require user gesture (we have one)
+      if (src) setVideoSrc(src);
       vbVideo.currentTime = 0;
       const p = vbVideo.play();
       if(p && typeof p.catch === 'function'){ p.catch(()=>{/* autoplay blocked? user already clicked, ignore */}); }
@@ -323,9 +331,16 @@ $(document).ready(function(){
       document.body.style.overflow = '';
     }
 
-    openBtn.addEventListener('click', function(e){
-      e.preventDefault();
-      openVideo();
+    const openButtons = [
+      ...Array.from(document.querySelectorAll('[data-video-open]')),
+      ...Array.from(document.querySelectorAll('#openVideo'))
+    ];
+    openButtons.forEach(btn => {
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        const src = btn.getAttribute('data-video-src') || '';
+        openVideo(src);
+      });
     });
 
     if(vbClose) vbClose.addEventListener('click', function(e){ e.preventDefault(); closeVideo(); });
@@ -636,10 +651,10 @@ $(document).ready(function(){
 // === PREROLL v1s: overlay por 1s e vídeo com fade suave (não altera outras partes) ===
 (function(){
   function init(){
-    var btn = document.getElementById('openVideo');
     var box = document.getElementById('videobox');
     var video = document.getElementById('vbVideo');
-    if(!btn || !box || !video) return;
+    var source = document.getElementById('vbSource');
+    if(!box || !video) return;
 
     // Garante classe de fade no vídeo
     if(!video.classList.contains('vb-fade')) video.classList.add('vb-fade');
@@ -668,6 +683,13 @@ $(document).ready(function(){
       video.classList.remove('show');
     }
 
+    function setSrc(src){
+      if(!src) return;
+      if(source) source.setAttribute('src', src);
+      video.src = src;
+      try { video.load(); } catch(e){}
+    }
+
     // FECHAR (mantém comportamentos existentes)
     var vbClose = box.querySelector('.vb-close');
     if(vbClose) vbClose.addEventListener('click', function(e){ e.preventDefault(); closeModal(); }, { capture: true });
@@ -675,26 +697,34 @@ $(document).ready(function(){
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
 
     // ABRIR com preroll: captura cedo e cancela handlers que tocariam o vídeo direto
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      if(typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+    var buttons = [
+      ...Array.from(document.querySelectorAll('[data-video-open]')),
+      ...Array.from(document.querySelectorAll('#openVideo'))
+    ];
+    buttons.forEach(function(btn){
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        if(typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
 
-      openModal();
+        var src = btn.getAttribute('data-video-src') || '';
+        if(src) setSrc(src);
+        openModal();
 
-      try { video.pause(); video.currentTime = 0; } catch(e){}
-      pre.classList.add('show');
-      video.classList.remove('show'); // garante início em fade
+        try { video.pause(); video.currentTime = 0; } catch(e){}
+        pre.classList.add('show');
+        video.classList.remove('show'); // garante início em fade
 
-      // Após 1s, some overlay e inicia vídeo com fade
-      setTimeout(function(){
-        pre.classList.remove('show');
-        // Toca o vídeo e aplica fade suave
-        var p = video.play();
-        video.classList.add('show');
-        if(p && typeof p.catch === 'function'){ p.catch(function(){ /* ignore autoplay block */ }); }
-      }, 1000);
-    }, { capture: true });
+        // Após 1s, some overlay e inicia vídeo com fade
+        setTimeout(function(){
+          pre.classList.remove('show');
+          // Toca o vídeo e aplica fade suave
+          var p = video.play();
+          video.classList.add('show');
+          if(p && typeof p.catch === 'function'){ p.catch(function(){ /* ignore autoplay block */ }); }
+        }, 1000);
+      }, { capture: true });
+    });
 
   }
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
