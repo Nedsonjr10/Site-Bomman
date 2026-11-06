@@ -1,590 +1,301 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P6QJPPRM');</script>
+<!-- End Google Tag Manager -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bomman Construtora — Construções e Reformas com Padrão</title>
 <meta name="description" content="Bomman Construtora: obras residenciais e comerciais, reformas e construções com rapidez, segurança e o Padrão Bomman.">
 <meta name="theme-color" content="#0b1e39">
+<link rel="icon" href="assets/img/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css">
-
-<link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<link rel="stylesheet" href="assets/css/site.css">
+<script>document.documentElement.className+=" rv"</script>
 </head>
 <body>
-<div class="progress" id="progress"></div>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6QJPPRM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
-<header class="header">
-  <div class="container nav">
-    <div class="brand"><a href="#home" class="brand-logo" aria-label="Bomman Construtora"><img src="assets/img/04-Logo-Horizontal-Light.png" alt="Bomman Construtora" height="78" style="width:auto;image-rendering:auto;display:block;"></a></div>
-    <nav class="nav-links" aria-label="Principal">
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a href="#home" class="logo" aria-label="Bomman Construtora">
+      <span hidden>BOMMAN</span>
+      <img src="assets/img/04-Logo-Horizontal-Light.png" alt="Bomman Construtora" onerror="this.style.display='none';this.previousElementSibling.hidden=false">
+    </a>
+    <nav class="nav" aria-label="Principal">
       <a href="#servicos">Serviços</a>
       <a href="#portfolio">Projetos</a>
       <a href="#porque">Por que a Bomman</a>
       <a href="#lider">Líder</a>
-      <a href="#contato">Contato</a>
+      <a href="#contato" class="cta">Contato</a>
     </nav>
-    <button class="hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
   </div>
+  <nav class="mnav" id="mnav" aria-label="Menu móvel">
+    <a href="#servicos">Serviços</a><a href="#portfolio">Projetos</a><a href="#porque">Por que a Bomman</a><a href="#lider">Líder</a><a href="#contato">Contato</a>
+  </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="inner container reveal">
-    <span class="badge">Qualidade • Prazo • Transparência</span>
+<main>
+<section id="home" class="hero">
+  <div class="grid80"></div>
+  <div class="hero-c">
     <h1>Construções e Reformas com rapidez, segurança e o <em>Padrão Bomman</em></h1>
-    <p>Obras residenciais e comerciais do planejamento à entrega, com gestão de prazos, custos e comunicação clara.</p>
-    <div class="ctas">
-      <a class="btn" href="#contato"><i class="fa-solid fa-paper-plane"></i> Solicitar orçamento</a>
-      <a class="btn btn-outline" href="#portfolio"><i class="fa-regular fa-folder-open"></i> Ver projetos</a>
+    <p class="lead">Obras residenciais e comerciais do planejamento à entrega, com gestão de prazos, custos e comunicação clara.</p>
+    <div class="hero-cta">
+      <a href="#contato" class="btn btn-w"><i class="fa-solid fa-paper-plane"></i> Solicitar orçamento</a>
+      <a href="#portfolio" class="btn btn-o"><i class="fa-regular fa-folder-open"></i> Ver projetos</a>
     </div>
-    <div class="metrics mt-6">
-      <div class="metric"><b class="count" data-target="30" data-prefix="+ ">0</b>Obras Entregues</div>
-      <div class="metric"><b class="count" data-target="12">0</b>Obras em andamento</div>
-      <div class="metric"><b class="count" data-target="80000" data-prefix="+ " data-suffix=" m²" data-format="br">0</b>Executados</div>
+  </div>
+  <div class="sheet">
+    <div class="ruler"><i></i><b></b><i></i></div>
+    <div class="sheet-img" style="margin-top:18px">
+      <div class="ph"><img src="assets/img/hero-principal.jpg" alt="Obra Bomman" style="object-position:center 60%" fetchpriority="high" onerror="this.style.display='none'"></div>
+      <span class="brk on-dark"></span>
+    </div>
+    <div class="stamp">
+      <div class="stamp-h"><span>Bomman Construtora</span><span>Padrão Bomman</span></div>
+      <div class="stamp-c"><div class="stamp-n" data-count="30" data-pre="+ ">+ 30</div><div class="stamp-l">Obras Entregues</div></div>
+      <div class="stamp-c"><div class="stamp-n" data-count="12">12</div><div class="stamp-l">Obras em andamento</div></div>
+      <div class="stamp-c"><div class="stamp-n" data-count="80000" data-pre="+ " data-suf=" m²">+ 80.000<small> m²</small></div><div class="stamp-l">Executados</div></div>
     </div>
   </div>
 </section>
 
-
-<!-- =================== QUEM SOMOS NÓS =================== -->
-
-<section class="quem-somos section">
-  <div class="container quem-grid">
-    <div class="quem-text">
-      <h2>Quem Somos Nós</h2>
+<section class="sec light" id="quem-somos">
+  <div class="grid80"></div>
+  <div class="wrap">
+    <div class="shead"><div class="shead-l"><div class="badge"><span>02</span><span></span><span>10</span></div><h2>Quem Somos Nós</h2></div></div>
+    <div class="ruler-wrap"><div class="ruler"><i></i><b></b><i></i></div></div>
+    <div class="about">
       <p>A Bomman Construtora nasceu com o propósito de elevar o padrão da construção civil em Pernambuco. Atuamos com foco em qualidade, eficiência e relacionamento transparente, entregando obras que refletem o compromisso com a excelência e o respeito aos nossos clientes.</p>
-    </div>
-    <div class="quem-logo">
-      <img src="assets/img/04-Logo-Horizontal-Light.png" alt="Bomman Construtora"></div>
-  </div>
-</section>
-
-
-<!-- POR QUE A BOMMAN -->
-<section class="section" id="porque">
-  <div class="container">
-    <div class="header-row">
-      <h2>Por que a Bomman?</h2>
-      <p class="sub">Diferenciais que viram recomendações</p>
-    </div>
-    <div class="center" style="margin:10px 0 16px"></div>
-    <div id="pq-features" class="features">
-      <div class="feature reveal">
-        <i class="fi fa-solid fa-bolt"></i>
-        <h3>Rapidez</h3>
-        <p>Planejamento assertivo, suprimentos no tempo certo e equipes sincronizadas para entregar no prazo.</p>
-      </div>
-      <div class="feature reveal">
-        <i class="fi fa-solid fa-shield-halved"></i>
-        <h3>Segurança</h3>
-        <p>Conformidade técnica (ABNT/NRs), gestão de riscos e respeito total às normas de segurança.</p>
-      </div>
-      <div class="feature reveal">
-        <i class="fi fa-solid fa-handshake"></i>
-        <h3>Confiabilidade</h3>
-        <p>Transparência de custos e comunicação contínua. Você acompanha cada etapa da obra.</p>
-      </div>
-      <div class="feature reveal">
-        <i class="fi fa-solid fa-star"></i>
-        <h3>Padrão Bomman</h3>
-        <p>Acabamento impecável, seleção criteriosa de materiais e checklist de qualidade em 100% dos serviços.</p>
+      <div class="logo-card">
+        <div class="g40"></div>
+        <div class="mid" hidden>BOMMAN</div>
+        <img src="assets/img/04-Logo-Horizontal-Light.png" alt="Bomman Construtora" onerror="this.style.display='none';this.previousElementSibling.hidden=false">
+        <span class="brk on-light"></span>
+        <div class="foot-bar"><span>Bomman Construtora</span><span>Pernambuco • Paraíba</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVIÇOS -->
-<section class="section" id="servicos">
-  <div class="container">
-    <div class="header-row">
-      <h2>Nossos Serviços</h2>
-      <p class="sub">Soluções completas para sua obra</p>
-    </div>
-
-    <div class="grid grid-2">
-      <!-- Card 1 -->
-      <article class="card service-card reveal">
-        <div class="card-body" style="padding:28px 28px 36px;">
-          <div class="iconwrap" style="width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,#112845,#2b6fb0);color:#fff;display:grid;place-items:center;font-size:22px;margin-bottom:18px;">
-            <i class="fa-solid fa-house-chimney"></i>
-          </div>
-          <h3 style="text-transform:uppercase;color:#112845;letter-spacing:.6px;">Construção de casas</h3>
-          <p style="margin-top:12px;color:#133055;opacity:.9">Projetos e execução completa para residências com gestão técnica e qualidade construtiva.</p>
-        </div>
-      </article>
-
-      <!-- Card 2 -->
-      <article class="card service-card reveal">
-        <div class="card-body" style="padding:28px 28px 36px;">
-          <div class="iconwrap" style="width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,#112845,#2b6fb0);color:#fff;display:grid;place-items:center;font-size:22px;margin-bottom:18px;">
-            <i class="fa-solid fa-computer"></i>
-          </div>
-          <h3 style="text-transform:uppercase;color:#112845;letter-spacing:.6px;">Projetos de engenharia e arquitetura</h3>
-          <p style="margin-top:12px;color:#133055;opacity:.9">Elaboração de projetos técnicos, compatibilização e acompanhamento técnico.</p>
-        </div>
-      </article>
-
-      <!-- Card 3 -->
-      <article class="card service-card reveal">
-        <div class="card-body" style="padding:28px 28px 36px;">
-          <div class="iconwrap" style="width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,#112845,#2b6fb0);color:#fff;display:grid;place-items:center;font-size:22px;margin-bottom:18px;">
-            <i class="fa-solid fa-trowel-bricks"></i>
-          </div>
-          <h3 style="text-transform:uppercase;color:#112845;letter-spacing:.6px;">Reformas, retrofits e ampliações de alto padrão</h3>
-          <p style="margin-top:12px;color:#133055;opacity:.9">Intervenções que valorizam e modernizam ambientes mantendo a excelência construtiva.</p>
-        </div>
-      </article>
-
-      <!-- Card 4 -->
-      <article class="card service-card reveal">
-        <div class="card-body" style="padding:28px 28px 36px;">
-          <div class="iconwrap" style="width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,#112845,#2b6fb0);color:#fff;display:grid;place-items:center;font-size:22px;margin-bottom:18px;">
-            <i class="fa-solid fa-handshake"></i>
-          </div>
-          <h3 style="text-transform:uppercase;color:#112845;letter-spacing:.6px;">Consultoria para financiamento e aprovação em prefeitura</h3>
-          <p style="margin-top:12px;color:#133055;opacity:.9">Suporte técnico e documental para aprovação de projetos e orientação sobre financiamentos.</p>
-        </div>
-      </article>
+<section class="sec dark" id="porque">
+  <div class="grid80"></div>
+  <div class="wrap">
+    <div class="shead"><div class="shead-l"><div class="badge"><span>03</span><span></span><span>10</span></div><h2>Por que a Bomman?</h2></div><p class="shead-sub">Diferenciais que viram recomendações</p></div>
+    <div class="ruler-wrap"><div class="ruler"><i></i><b></b><i></i></div></div>
+    <div class="pq-grid" id="pq-features">
+      <div class="pq-card"><i class="fi fa-solid fa-bolt"></i><h3>Rapidez</h3><p>Planejamento assertivo, suprimentos no tempo certo e equipes sincronizadas para entregar no prazo.</p></div>
+      <div class="pq-card"><i class="fi fa-solid fa-shield-halved"></i><h3>Segurança</h3><p>Conformidade técnica (ABNT/NRs), gestão de riscos e respeito total às normas de segurança.</p></div>
+      <div class="pq-card"><i class="fi fa-solid fa-handshake"></i><h3>Confiabilidade</h3><p>Transparência de custos e comunicação contínua. Você acompanha cada etapa da obra.</p></div>
+      <div class="pq-card"><i class="fi fa-solid fa-star"></i><h3>Padrão Bomman</h3><p>Acabamento impecável, seleção criteriosa de materiais e checklist de qualidade em 100% dos serviços.</p></div>
     </div>
   </div>
 </section>
 
-
-
-<!-- VÍDEO INSTITUCIONAL -->
-<section class="section video-block" id="video">
-  <div class="container">
-    <div class="header-row">
-      <h2>Conheça nosso padrão de obra</h2>
-    </div>
-
-    <div class="video-wrap reveal">
-     <img class="video-poster" src="assets/img/Bomman foto do Video.png" alt="Capa do vídeo">
-      <div class="video-overlay">
-        <button class="play-btn" id="openVideo" data-video-src="assets/video/video_principal.mp4" aria-label="Reproduzir vídeo">
-          <i class="fa-solid fa-play"></i>
-        </button>
-        <span class="video-label">Assista ao vídeo</span>
-      </div>
-    </div>
-
-    <div class="mt-6 reveal">
-      <div class="feature" style="display:flex;align-items:center;justify-content:space-between;gap:16px">
-        <div>
-          <h3 style="margin:0 0 6px">Depoimento de cliente</h3>
-          <p style="margin:0;color:#d6e6ff">Assista um relato rápido sobre a experiência com a Bomman.</p>
-        </div>
-        <button class="btn btn-outline" type="button" data-video-open data-video-src="assets/video/depoimento_cliente.mp4">
-          <i class="fa-solid fa-play"></i> Assistir
-        </button>
-      </div>
+<section class="sec light" id="servicos">
+  <div class="grid80"></div>
+  <div class="wrap">
+    <div class="shead"><div class="shead-l"><div class="badge"><span>04</span><span></span><span>10</span></div><h2>Nossos Serviços</h2></div><p class="shead-sub">Soluções completas para sua obra</p></div>
+    <div class="ruler-wrap"><div class="ruler"><i></i><b></b><i></i></div></div>
+    <div class="sv-grid">
+      <article class="sv-card"><div class="sv-ic"><i class="fa-solid fa-house-chimney"></i></div><h3>Construção de casas</h3><p>Projetos e execução completa para residências com gestão técnica e qualidade construtiva.</p></article>
+      <article class="sv-card"><div class="sv-ic"><i class="fa-solid fa-computer"></i></div><h3>Projetos de engenharia e arquitetura</h3><p>Elaboração de projetos técnicos, compatibilização e acompanhamento técnico.</p></article>
+      <article class="sv-card"><div class="sv-ic"><i class="fa-solid fa-trowel-bricks"></i></div><h3>Reformas, retrofits e ampliações de alto padrão</h3><p>Intervenções que valorizam e modernizam ambientes mantendo a excelência construtiva.</p></article>
+      <article class="sv-card"><div class="sv-ic"><i class="fa-solid fa-handshake"></i></div><h3>Consultoria para financiamento e aprovação em prefeitura</h3><p>Suporte técnico e documental para aprovação de projetos e orientação sobre financiamentos.</p></article>
     </div>
   </div>
 </section>
 
-
-<!-- =================== NOSSOS DIFERENCIAIS (abaixo do vídeo) =================== -->
-<section id="diferenciais">
-  <div class="diff-wrap">
-    <div class="container">
-      <span class="diff-eyebrow">Nossos diferenciais</span>
-      <h2 class="diff-title">Transparência, eficiência e presença em campo</h2>
-      <p class="diff-sub">Clique nos itens para ver evidências reais do nosso acompanhamento e gestão.</p>
-
-      <div class="diff-accordion">
-        <details class="diff-item" open>
-          <summary class="diff-summary"><span class="icon"><img src="assets/img/Sistema de gestao completo todo branco.png" alt="Sistema de gestão completo" style="width:48px;height:48px;object-fit:contain;display:inline-block;vertical-align:-6px;"></span> <b>Sistema de gestão completo</b></summary>
-          <div class="diff-content" style="display:flex; gap:16px; padding:0 18px 18px 56px; overflow-x:auto;">
-            <img src="assets/img/Gesta.jpg" alt="Cronograma de obra — Sistema de gestão" style="flex:0 0 calc(50% - 8px); width:calc(50% - 8px); object-fit:contain; height:auto;;">
-            <img src="assets/img/Gesta2.jpg" alt="Relatório financeiro da obra — Sistema de gestão" style="flex:0 0 calc(50% - 8px); width:calc(50% - 8px); object-fit:contain; height:auto;;">
-            <img src="assets/img/Gesta3.jpg" alt="Relatório complementar — Sistema de gestão" style="flex:0 0 calc(50% - 8px); width:calc(50% - 8px); object-fit:contain; height:auto;;">
-            <img src="assets/img/Gesta4.jpg" alt="Centro de custos e gráficos — Sistema de gestão" style="flex:0 0 calc(50% - 8px); width:calc(50% - 8px); object-fit:contain; height:auto;;">
-          </div>
-        </details>
-
-        <details class="diff-item">
-          <summary class="diff-summary"><span class="icon"><img src="assets/img/Diario de obra todo branco.png" alt="Diário de obras" style="width:48px;height:48px;object-fit:contain;display:inline-block;vertical-align:-6px;"></span> <b>Diário de obras (fotos e relatórios)</b></summary>
-          <div class="diff-content" style="display:flex; gap:16px; padding:0 18px 18px 56px; overflow-x:auto;">
-            <img src="assets/img/diario1.jpg" alt="Registros de obra - conversas e fotos" style="flex:0 0 calc(50% - 8px); width:calc(50% - 8px); object-fit:contain; height:auto;">
-            <img src="assets/img/diario2.png" alt="Registros de obra - diário fotográfico" style="flex:0 0 calc(50% - 8px); width:calc(50% - 8px); object-fit:contain; height:auto;">
-          </div>
-        </details>
-
-        <details class="diff-item">
-          <summary class="diff-summary"><span class="icon"><img src="assets/img/Equipe presente em campo engenharia  todo branco.png" alt="Equipe presente em campo" style="width:48px;height:48px;object-fit:contain;display:inline-block;vertical-align:-6px;"></span> <b>Equipe presente em campo</b></summary>
-          <div class="diff-content" style="display:flex; gap:16px; padding:0 18px 18px 56px; overflow-x:auto;">
-            <img src="assets/img/equipe1.jpg" alt="Equipe Bomman em obra - registro 1" style="flex:0 0 calc(33.33% - 11px); width:calc(33.33% - 11px); object-fit:contain; height:auto;">
-            <img src="assets/img/equipe2.jpg" alt="Equipe Bomman em obra - registro 2" style="flex:0 0 calc(33.33% - 11px); width:calc(33.33% - 11px); object-fit:contain; height:auto;">
-            <img src="assets/img/equipe3.jpg" alt="Equipe Bomman em obra - registro 3" style="flex:0 0 calc(33.33% - 11px); width:calc(33.33% - 11px); object-fit:contain; height:auto;">
-            <img src="assets/img/equipe4.jpg" alt="Equipe Bomman em obra - registro 4" style="flex:0 0 calc(33.33% - 11px); width:calc(33.33% - 11px); object-fit:contain; height:auto;">
-            <img src="assets/img/equipe5.jpg" alt="Equipe Bomman em obra - registro 5" style="flex:0 0 calc(33.33% - 11px); width:calc(33.33% - 11px); object-fit:contain; height:auto;">
-            <img src="assets/img/equipe6.jpg" alt="Equipe Bomman em obra - registro 6" style="flex:0 0 calc(33.33% - 11px); width:calc(33.33% - 11px); object-fit:contain; height:auto;">
-          </div>
-        </details>
-
-        
-<details class="diff-item">
-          <summary class="diff-summary"><span class="icon"><img src="assets/img/Qualidade e controle por etapa todo branco.png" alt="Qualidade na entrega" style="width:48px;height:48px;object-fit:contain;display:inline-block;vertical-align:-6px;"></span> <b>Qualidade na entrega</b></summary>
-          <div class="diff-content" style="display:flex; gap:16px; padding:0 18px 18px 56px; overflow-x:auto;">
-            <img src="assets/img/qualidade1.jpg" alt="Trabalho entregue - registro 1" style="flex:0 0 calc(50% - 10px); width:calc(50% - 10px); object-fit:contain; height:auto;">
-            <img src="assets/img/qualidade2.jpg" alt="Trabalho entregue - registro 2" style="flex:0 0 calc(50% - 10px); width:calc(50% - 10px); object-fit:contain; height:auto;">
-            <img src="assets/img/qualidade3.jpg" alt="Trabalho entregue - registro 3" style="flex:0 0 calc(50% - 10px); width:calc(50% - 10px); object-fit:contain; height:auto;">
-            <img src="assets/img/qualidade4.jpg" alt="Trabalho entregue - registro 4" style="flex:0 0 calc(50% - 10px); width:calc(50% - 10px); object-fit:contain; height:auto;">
-            <img src="assets/img/qualidade5.jpg" alt="Trabalho entregue - registro 5" style="flex:0 0 calc(50% - 10px); width:calc(50% - 10px); object-fit:contain; height:auto;">
-            <img src="assets/img/qualidade6.jpg" alt="Trabalho entregue - registro 6" style="flex:0 0 calc(50% - 10px); width:calc(50% - 10px); object-fit:contain; height:auto;">
-          </div>
-        </details>
-
+<section class="sec light" id="video">
+  <div class="grid80"></div>
+  <div class="wrap">
+    <div class="shead"><div class="shead-l"><div class="badge"><span>05</span><span></span><span>10</span></div><h2>Conheça nosso padrão de obra</h2></div></div>
+    <div class="ruler-wrap"><div class="ruler"><i></i><b></b><i></i></div></div>
+    <div class="vid">
+      <div class="vid-img">
+        <div class="ph"><img src="assets/img/Bomman foto do Video.png" alt="Capa do vídeo institucional" loading="lazy" onerror="this.style.display='none'"></div>
+        <span class="brk on-dark"></span>
       </div>
+      <div class="vid-shade"></div>
+      <div class="vid-play">
+        <button class="play" aria-label="Reproduzir vídeo" data-video="assets/video/video_principal.mp4"><i class="fa-solid fa-play"></i></button>
+        <span>Assista ao vídeo</span>
+      </div>
+    </div>
+    <div class="depo">
+      <div class="depo-l"><span>Depoimento</span><div><h3>Depoimento de cliente</h3><p>Assista um relato rápido sobre a experiência com a Bomman.</p></div></div>
+      <div class="depo-r"><button type="button" class="btn-line" data-video="assets/video/depoimento_cliente.mp4"><i class="fa-solid fa-play"></i> Assistir</button></div>
     </div>
   </div>
 </section>
 
-
-</section>
-
-
-<!-- PORTFÓLIO (Slick unificado) -->
-<section class="section" id="portfolio" aria-label="Portfólio">
-  <div class="container">
-    <div class="header-row">
-      <h2>Projetos em Andamento</h2>
-      <p class="sub">Clique para ampliar</p>
-    </div>
-
-    <div class="portfolio-slick">
-      <div class="portfolio-item"><img class="lb" src="assets/img/projeto1.jpg" alt="Projeto 01"></div>
-      <div class="portfolio-item"><img class="lb" src="assets/img/projeto2.jpg" alt="Projeto 02"></div>
-      <div class="portfolio-item"><img class="lb" src="assets/img/projeto3.jpg" alt="Projeto 03"></div>
-      <div class="portfolio-item"><img class="lb" src="assets/img/projeto4.jpg" alt="Projeto 04"></div>
-      <div class="portfolio-item"><img class="lb" src="assets/img/projeto5.jpg" alt="Projeto 05"></div>
-      <div class="portfolio-item"><img class="lb" src="assets/img/projeto6.jpg" alt="Projeto 06"></div>
-      <div class="portfolio-item"><img class="lb" src="assets/img/projeto7.jpg" alt="Projeto 07"></div>
-      <div class="portfolio-item"><img class="lb" src="assets/img/projeto8.jpg" alt="Projeto 08"></div>
-      <div class="portfolio-item"><img class="lb" src="assets/img/projeto9.jpg" alt="Projeto 09"></div>
-      <div class="portfolio-item"><img class="lb" src="assets/img/projeto10.jpg" alt="Projeto 10"></div>
-    </div>
-  </div>
-</section>
-
-<!-- DEPOIMENTOS -->
-<section class="elementor-section">
-  <h2 class="elementor-heading-title">O que dizem nossos <b>clientes</b></h2>
-
-  <div class="ha-slick-carousel">
-    
-    <!-- Exemplo: basta duplicar este bloco <div class="phone-item"> para adicionar mais prints -->
-    <div class="phone-item">
-      <div class="phone-frame">
-        <img src="assets/img/cliente1.png" alt="Depoimento Cliente 1">
-      </div>
-    </div>
-    <div class="phone-item">
-      <div class="phone-frame">
-        <img src="assets/img/cliente2.jpeg" alt="Depoimento Cliente 2">
-      </div>
-    </div>
-    <div class="phone-item">
-      <div class="phone-frame">
-        <img src="assets/img/cliente4.png" alt="Depoimento Cliente 4">
-      </div>
-    </div>
-<div class="phone-item">
-      <div class="phone-frame">
-        <img src="assets/img/cliente5.png" alt="Depoimento Cliente 5">
-      </div>
-    </div>
-    <div class="phone-item">
-      <div class="phone-frame">
-        <img src="assets/img/cliente3.jpeg" alt="Depoimento Cliente 3">
-      </div>
-    </div>
-
-
-  </div>
-</section>
-
-
-
-
-
-
-
-<!-- LÍDER -->
-<section class="section" id="lider" aria-label="Líder">
-  <div class="container">
-    <div class="header-row">
-      <h2>Líder</h2>
-      <p class="sub">Responsável técnico e visão de excelência</p>
-    </div>
-    <div class="leader reveal">
-      <img loading="lazy" src="assets/img/amadeu.jpg" alt="Amadeu Bomman — Engenheiro Civil">
+<section class="sec dark" id="diferenciais">
+  <div class="grid80"></div>
+  <div class="wrap">
+    <div class="shead"><div class="shead-l"><div class="badge"><span>06</span><span></span><span>10</span></div><h2>Transparência, eficiência e presença em campo</h2></div></div>
+    <div class="ruler-wrap"><div class="ruler"><i></i><b></b><i></i></div></div>
+    <p class="dif-note">Clique nos itens para ver evidências reais do nosso acompanhamento e gestão.</p>
+    <div class="dif">
+      <div class="dif-list" id="difList" role="tablist"></div>
       <div>
-        <h3>Amadeu Bomman</h3>
-        <div class="role">Engenheiro Civil • Especialização em Engenharia de Segurança do Trabalho • MBA em Gestão de Pessoas (Liderança)</div>
-        <p class="mt-6">Conduz cada projeto com planejamento, segurança e transparência. Engenheiro civil, com especialização em Engenharia de Segurança do Trabalho e MBA em Gestão de Pessoas com foco em liderança organizacional. Mas mais do que títulos, carrega experiências que moldaram seu olhar sobre o que realmente significa construir.</p>
-        <ul>
-          <li>CREA ativo • Atualização contínua</li>
-          <li>Gestão de cronograma e orçamento</li>
-          <li>Boas práticas de sustentabilidade</li>
-        </ul>
-        <div class="mt-6">
-          <a class="btn" href="#contato"><i class="fa-solid fa-calendar-check"></i> Agendar conversa</a>
-        </div>
+        <div class="dif-top"><span id="difTitle"></span><span id="difCount"></span></div>
+        <div class="dif-grid" id="difGrid"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTATO -->
-<section class="section" id="contato" aria-label="Contato">
-  <div class="container">
-    <div class="header-row">
-      <h2>Fale Conosco</h2>
-      <p class="sub">Responderemos o quanto antes</p>
+<section class="sec light flush" id="portfolio" aria-label="Portfólio">
+  <div class="grid80"></div>
+  <div style="position:relative">
+    <div class="pad-x">
+      <div class="shead"><div class="shead-l"><div class="badge"><span>07</span><span></span><span>10</span></div><h2>Projetos em Andamento</h2></div><div class="pf-ctl"><span class="ct" id="pfCount">01 / 10</span><button class="sq" id="pfPrev" aria-label="Anterior"><i class="fa-solid fa-arrow-left"></i></button><button class="sq solid" id="pfNext" aria-label="Próximo"><i class="fa-solid fa-arrow-right"></i></button></div></div>
+    <div class="ruler-wrap"><div class="ruler"><i></i><b></b><i></i></div></div>
     </div>
-
-    <div class="contact">
-      
-<form id="form" class="form" method="POST" action="https://formsubmit.co/amadeu@bomman.com.br">
-  <!-- anti-spam -->
-  <input type="text" name="_honey" style="display:none">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_subject" value="Contato do site - Bomman">
-  <input type="hidden" name="_template" value="table">
-
-  <div class="field">
-    <label for="nome">Seu nome</label>
-    <input id="nome" name="name" required minlength="3" placeholder="Seu nome completo">
+    <div class="track" id="pfTrack"></div>
+    <div class="pad-x" style="margin-top:32px">
+      <div class="scale" id="pfScale"></div>
+      <div class="scale-n"><span>01</span><span>10</span></div>
+    </div>
   </div>
-  <div class="field">
-    <label for="email">Seu e-mail</label>
-    <input id="email" name="email" type="email" required placeholder="voce@email.com">
-  </div>
-  <div class="field">
-    <label for="msg">Mensagem</label>
-    <textarea id="msg" name="message" rows="5" required minlength="10" placeholder="Conte rapidamente o que precisa"></textarea>
-  </div>
-  <button class="btn-send" type="submit"><i class="fa-solid fa-envelope"></i> Enviar mensagem</button>
-  <p id="status" class="sub" aria-live="polite" style="margin-top:8px"></p>
-</form>
+</section>
 
+<section class="sec grey flush" id="depoimentos">
+  <div class="grid80"></div>
+  <div style="position:relative">
+    <div class="pad-x">
+      <div class="shead"><div class="shead-l"><div class="badge"><span>08</span><span></span><span>10</span></div><h2>O que dizem nossos <b>clientes</b></h2></div></div>
+    <div class="ruler-wrap"><div class="ruler"><i></i><b></b><i></i></div></div>
+    </div>
+    <div class="track" id="clTrack"></div>
+  </div>
+</section>
 
-      <aside class="aside">
-        <div class="tile">
-          <h3>Atendimento</h3>
-          <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: <b>+55 81 9888-9698</b></p>
-          <p><i class="fa-solid fa-at"></i> E-mail: <b>contato@bomman.com.br</b></p>
+<section class="sec dark" id="lider" aria-label="Líder">
+  <div class="grid80"></div>
+  <div class="wrap">
+    <div class="shead"><div class="shead-l"><div class="badge"><span>09</span><span></span><span>10</span></div><h2>Líder</h2></div></div>
+    <div class="ruler-wrap"><div class="ruler"><i></i><b></b><i></i></div></div>
+    <div class="lead-g">
+      <figure style="margin:0">
+        <div class="lead-img">
+          <div class="ph"><img src="assets/img/amadeu.jpg" alt="Amadeu Bomman — Engenheiro Civil" loading="lazy" onerror="this.style.display='none'"></div>
+          <span class="brk on-dark"></span>
         </div>
-        <div class="tile">
+        <figcaption class="lead-fig"><span>Amadeu Bomman</span><span>Engenheiro Civil</span></figcaption>
+      </figure>
+      <div>
+        <div class="card">
+          <div class="card-h"><span>Responsável técnico</span><span>Bomman Construtora</span></div>
+          <div class="row"><span>Nome</span><div><h3>Amadeu Bomman</h3></div></div>
+          <div class="row"><span>Formação</span><div><div class="t">Engenheiro Civil • Especialização em Engenharia de Segurança do Trabalho • MBA em Gestão de Pessoas (Liderança)</div></div></div>
+          <div class="row"><span>Perfil</span><div><p class="p">Conduz cada projeto com planejamento, segurança e transparência. Engenheiro civil, com especialização em Engenharia de Segurança do Trabalho e MBA em Gestão de Pessoas com foco em liderança organizacional. Mas mais do que títulos, carrega experiências que moldaram seu olhar sobre o que realmente significa construir.</p></div></div>
+          <div class="row"><span>Credenciais</span><div><ul>
+            <li><i class="fa-solid fa-check"></i>CREA ativo • Atualização contínua</li>
+            <li><i class="fa-solid fa-check"></i>Gestão de cronograma e orçamento</li>
+            <li><i class="fa-solid fa-check"></i>Boas práticas de sustentabilidade</li>
+          </ul></div></div>
+        </div>
+        <a href="#contato" class="btn btn-w" style="margin-top:32px"><i class="fa-solid fa-calendar-check"></i> Agendar conversa</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec grey" id="contato" aria-label="Contato">
+  <div class="grid80"></div>
+  <div class="wrap">
+    <div class="shead"><div class="shead-l"><div class="badge"><span>10</span><span></span><span>10</span></div><h2>Fale Conosco</h2></div></div>
+    <div class="ruler-wrap"><div class="ruler"><i></i><b></b><i></i></div></div>
+    <div class="ct-g">
+      <form class="form" id="form" method="POST" action="https://formsubmit.co/amadeu@bomman.com.br" novalidate>
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Contato do site - Bomman">
+        <input type="hidden" name="_template" value="table">
+        <div class="form-h"><span>Fale Conosco</span><span>Bomman Construtora</span></div>
+        <div class="fields">
+          <label class="field" for="nome"><span>Seu nome</span><input id="nome" name="name" required minlength="3" placeholder="Seu nome completo" autocomplete="name"></label>
+          <label class="field" for="email"><span>Seu e-mail</span><input id="email" name="email" type="email" required placeholder="voce@email.com" autocomplete="email"></label>
+          <label class="field full" for="msg"><span>Mensagem</span><textarea id="msg" name="message" rows="5" required minlength="10" placeholder="Conte rapidamente o que precisa"></textarea></label>
+        </div>
+        <div class="form-f">
+          <p id="status" aria-live="polite"></p>
+          <button type="submit" class="send"><i class="fa-solid fa-envelope"></i> Enviar mensagem</button>
+        </div>
+      </form>
+      <aside class="aside">
+        <div>
+          <h3>Atendimento</h3>
+          <p class="li"><i class="fa-brands fa-whatsapp"></i> WhatsApp: <b>+55 81 9888-9698</b></p>
+          <p class="li"><i class="fa-solid fa-at"></i> E-mail: <b>contato@bomman.com.br</b></p>
+        </div>
+        <div>
           <h3>Redes sociais</h3>
-          <div class="social">
+          <div class="soc">
             <a href="https://wa.me/5581998889698?text=Ol%C3%A1%2C%20Bomman!%20Tenho%20interesse%20em%20receber%20um%20or%C3%A7amento." target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             <a href="https://www.instagram.com/bommanconstrutora/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://www.linkedin.com/company/bomman-construtora/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
             <a href="mailto:contato@bomman.com.br" aria-label="E-mail"><i class="fa-solid fa-envelope"></i></a>
           </div>
         </div>
-        <div class="tile endereco-tile">
+        <div class="addr">
           <h3>Endereço</h3>
-
-          <a class="endereco-link" href="https://www.google.com/maps/search/?api=1&query=Riomar%20Trade%20Center%20-%20Av.%20Rep%C3%BAblica%20do%20L%C3%ADbano%2C%20251%20-%20Pina%2C%20Recife%20-%20PE%20-%20Torre%201%20Sala%202916" target="_blank" rel="noopener">
-            <p class="end-title">Riomar Trade Center</p>
-            <p class="end-line">Av. República do Líbano, 251 • Torre 1 • Sala 2916</p>
-            <p class="end-line">Pina — Recife/PE</p>
+          <a class="addr-a" href="https://www.google.com/maps/search/?api=1&amp;query=Riomar%20Trade%20Center%20-%20Av.%20Rep%C3%BAblica%20do%20L%C3%ADbano%2C%20251%20-%20Pina%2C%20Recife%20-%20PE%20-%20Torre%201%20Sala%202916" target="_blank" rel="noopener">
+            <p class="n">Riomar Trade Center</p>
+            <p class="s">Av. República do Líbano, 251 • Torre 1 • Sala 2916</p>
+            <p class="s">Pina — Recife/PE</p>
           </a>
-
-          <div class="end-sep"></div>
-
-          <p class="end-meta"><strong>Região atendida:</strong> Pernambuco • Paraíba</p>
-          <p class="end-meta"><strong>Atendimento:</strong> Seg–Sex • 08h–18h</p>
-
-          <a class="btn btn--map" href="https://www.google.com/maps/search/?api=1&query=Riomar%20Trade%20Center%20-%20Av.%20Rep%C3%BAblica%20do%20L%C3%ADbano%2C%20251%20-%20Pina%2C%20Recife%20-%20PE%20-%20Torre%201%20Sala%202916" target="_blank" rel="noopener">Como chegar</a>
+          <div class="meta">
+            <p><strong>Região atendida:</strong> Pernambuco • Paraíba</p>
+            <p><strong>Atendimento:</strong> Seg–Sex • 08h–18h</p>
+          </div>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&amp;query=Riomar%20Trade%20Center%20-%20Av.%20Rep%C3%BAblica%20do%20L%C3%ADbano%2C%20251%20-%20Pina%2C%20Recife%20-%20PE%20-%20Torre%201%20Sala%202916" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Como chegar</a>
         </div>
       </aside>
     </div>
   </div>
 </section>
+</main>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container footer-cols">
-    <div>
-      <div class="credits"><div class="logo" aria-label="Bomman"><img src="assets/img/01-Símbolo-Blue.png" alt="Símbolo Bomman"></div><b>Bomman Construtora</b></div>
-      <p>Construção, reformas e projetos com excelência. Transparência de ponta a ponta e compromisso com o resultado.</p>
+<footer class="foot">
+  <div class="grid80"></div>
+  <div class="wrap">
+    <div class="foot-box">
+      <div class="foot-g">
+        <div>
+          <div class="foot-brand"><div class="sym">B<img src="assets/img/01-Símbolo-Blue.png" alt="Símbolo Bomman" onerror="this.style.display='none'"></div><b>Bomman Construtora</b></div>
+          <p>Construção, reformas e projetos com excelência. Transparência de ponta a ponta e compromisso com o resultado.</p>
+        </div>
+        <div><h4>Links</h4><ul><li><a href="#servicos">Serviços</a></li><li><a href="#portfolio">Projetos</a></li><li><a href="#porque">Por que a Bomman</a></li><li><a href="#lider">Líder</a></li><li><a href="#contato">Contato</a></li></ul></div>
+        <div><h4>Social</h4><ul><li><a href="https://www.instagram.com/bommanconstrutora/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/company/bomman-construtora/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://wa.me/5581998889698?text=Ol%C3%A1%2C%20Bomman!%20Tenho%20interesse%20em%20receber%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp</a></li><li><a href="mailto:contato@bomman.com.br">E-mail</a></li></ul></div>
+      </div>
+      <div class="foot-b"><small>© 2025 Bomman Construtora. Todos os direitos reservados.</small><small>Política de Privacidade • Termos</small></div>
     </div>
-    <div>
-      <h4>Links</h4>
-      <ul style="list-style:none;padding:0;margin-top:8px;display:grid;gap:8px">
-        <li><a href="#servicos">Serviços</a></li>
-        <li><a href="#portfolio">Projetos</a></li>
-        <li><a href="#porque">Por que a Bomman</a></li>
-        <li><a href="#lider">Líder</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Social</h4>
-      <ul style="list-style:none;padding:0;margin-top:8px;display:grid;gap:8px">
-        <li><a href="https://www.instagram.com/bommanconstrutora/" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="https://www.linkedin.com/company/bomman-construtora/" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://wa.me/5581998889698?text=Ol%C3%A1%2C%20Bomman!%20Tenho%20interesse%20em%20receber%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp</a></li>
-        <li><a href="mailto:contato@bomman.com.br">E-mail</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="container" style="margin-top:16px;border-top:1px solid #ffffff14;padding-top:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
-    <small>&copy; 2025 Bomman Construtora. Todos os direitos reservados.</small>
-    <small>Política de Privacidade • Termos</small>
   </div>
 </footer>
 
+<a class="wa" href="https://wa.me/5581998889698?text=Ol%C3%A1%2C%20Bomman!%20Tenho%20interesse%20em%20receber%20um%20or%C3%A7amento." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="totop" id="toTop" aria-label="Voltar ao topo" hidden><i class="fa-solid fa-arrow-up"></i></button>
 
-<!-- Modal de Vídeo -->
-<div class="videobox" id="videobox" aria-hidden="true" role="dialog" aria-label="Reprodução de vídeo">
-  <div class="videobox-inner">
-    <button class="vb-close" aria-label="Fechar vídeo"><i class="fa-solid fa-xmark"></i></button>
-    <video id="vbVideo" controls preload="metadata">
-      <source id="vbSource" src="assets/video/video_principal.mp4" type="video/mp4">
-      Seu navegador não suporta vídeo HTML5.
-    </video>
-  </div>
+<div class="modal" id="vModal" role="dialog" aria-label="Reprodução de vídeo" hidden>
+  <button class="x" aria-label="Fechar vídeo"><i class="fa-solid fa-xmark"></i></button>
+  <div class="vbox"><video id="vPlayer" controls preload="metadata" playsinline></video><span class="brk on-dark"></span></div>
+</div>
+<div class="modal lb" id="lbModal" role="dialog" aria-label="Visualização" hidden>
+  <button class="x" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+  <div class="lb-i"><img id="lbImg" src="" alt=""></div>
+  <p id="lbCap"></p>
 </div>
 
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Visualização">
-  <button class="lb-close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
-  <img src="" alt="">
-</div>
-
-<!-- Floating -->
-<a class="whats" href="https://wa.me/5581998889698?text=Ol%C3%A1%2C%20Bomman!%20Tenho%20interesse%20em%20receber%20um%20or%C3%A7amento." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-<button class="top" id="topBtn" aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
-
-
-
-
-
-
-
-
-
-<!-- ==================== O que dizem nossos clientes ==================== -->
-
-<!-- ==================== /O que dizem nossos clientes ==================== -->
-
-<!-- Slick Carousel (loaded once in <head>) -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Video play/close behavior patch (injected) -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- PATCH: centralização do celular no carrossel de depoimentos (mobile) -->
-
-
-
-<!-- ===== PATCH: Mobile menu (abre/fecha fora do menu, sempre abre ao clicar) ===== -->
-
-
-
-
-
-
-
-
-
-<script src="assets/js/main.js" defer></script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>
