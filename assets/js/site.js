@@ -139,28 +139,6 @@
     if (img.complete) fit(); else img.addEventListener('load', fit);
   });
 
-  /* ---------- formulário (FormSubmit via AJAX) ---------- */
-  var form = $('#form'), status = $('#status'), btn = $('.send', form);
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var nome = $('#nome').value.trim(), email = $('#email').value.trim(), msg = $('#msg').value.trim();
-    if (form.querySelector('[name=_honey]').value) return;
-    if (nome.length < 3) { status.textContent = 'Informe seu nome completo.'; return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { status.textContent = 'Informe um e-mail válido.'; return; }
-    if (msg.length < 10) { status.textContent = 'Conte melhor sua necessidade.'; return; }
-    status.textContent = 'Enviando...'; btn.disabled = true;
-    var data = new FormData(form);
-    fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), { method: 'POST', body: data, headers: { Accept: 'application/json' } })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function () { status.textContent = 'Mensagem enviada! Responderemos o quanto antes.'; form.reset(); })
-      .catch(function () {
-        status.textContent = 'Não foi possível enviar agora. Abrindo seu e-mail...';
-        window.location.href = 'mailto:contato@bomman.com.br?subject=' + encodeURIComponent('Contato do site - ' + nome) +
-          '&body=' + encodeURIComponent('Nome: ' + nome + '\nE-mail: ' + email + '\n\n' + msg);
-      })
-      .then(function () { btn.disabled = false; setTimeout(function () { status.textContent = ''; }, 6000); });
-  });
-
   /* ---------- entrada animada: Por que / Serviços ---------- */
   (function () {
     var els = document.querySelectorAll('.pq-card, .sv-card');
